@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.bunny.net; font-src https://fonts.bunny.net; img-src 'self' data:; form-action 'self' mailto:; base-uri 'self'; object-src 'none'; frame-ancestors 'self'">
+<title>RAGSource — Das Framework für verlässliches Domänenwissen im LLM</title>
+<meta name="description" content="RAGSource ist das Open-Source-Framework für Agentic Retrieval Augmented Generation. Quellengenau, zitierfähig, auditierbar. Das Fundament hinter amtsschimmel.ai, brandmeister.ai und paragrafenreiter.ai.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon-ragsource.svg">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ragsource.ai">
+<meta property="og:title" content="RAGSource — Agentic RAG. Open Source. Quellengenau.">
+<meta property="og:description" content="Das Open-Source-Framework für verlässliches Domänenwissen im LLM — quellengenau, zitierfähig, auditierbar.">
+<link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
+<link href="https://fonts.bunny.net/css?family=instrument-serif:400,400i|jetbrains-mono:400,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0f1013;--ink-2:#272b33;--ink-3:#555a64;--ink-4:#8a8f99;
+  --line:#e5e5e1;--line-2:#d8d8d2;
+  --paper:#fbfaf6;--paper-2:#f3f1e9;--paper-3:#ecead9;
+  --acc:#2563eb;--acc-ink:#1a3a8e;--acc-wash:#dce8fd;
+  --ok:#116c37;
+  --serif:'Instrument Serif','Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --mono:'JetBrains Mono','SF Mono','Fira Code',ui-monospace,Menlo,Consolas,monospace;
+  --gutter:24px;--container:1120px;
+}
+*{box-sizing:border-box;} html,body{margin:0;padding:0;} html{scroll-behavior:smooth;}
+body{font-family:var(--sans);font-size:17px;line-height:1.55;color:var(--ink-2);background:var(--paper);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+a{color:inherit;text-decoration:none;} button{font:inherit;cursor:pointer;background:none;border:0;padding:0;color:inherit;}
+.wrap{max-width:var(--container);margin:0 auto;padding:0 var(--gutter);}
+
+/* NAV */
+.nav{border-bottom:1px solid var(--line);background:var(--paper);position:sticky;top:0;z-index:40;}
+.nav-inner{height:74px;display:flex;align-items:center;justify-content:space-between;}
+.brand{display:flex;align-items:center;gap:11px;color:var(--ink);}
+.brand .fav{font-family:var(--mono);font-weight:500;font-size:13px;letter-spacing:0;line-height:1;color:var(--paper);background:var(--acc);padding:4px 7px;border-radius:3px;display:inline-flex;align-items:center;}
+.brand .wm{display:flex;flex-direction:column;line-height:1;}
+.brand .wm .name{font-family:var(--sans);font-weight:600;font-size:19px;letter-spacing:-0.02em;color:var(--ink);}
+.brand .wm .name .ai{color:var(--acc);}
+.brand .wm .desc{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;color:var(--ink-4);margin-top:3px;}
+.nav-links{display:flex;gap:2px;}
+.nav-links a{font-size:14px;color:var(--ink-3);padding:8px 12px;border-radius:4px;transition:color .15s;}
+.nav-links a:hover{color:var(--acc);}
+.nav-cta{font-size:13px;font-weight:600;padding:9px 16px;background:transparent;color:var(--acc);border:1px solid var(--acc);border-radius:2px;transition:background .15s,color .15s;margin-left:8px;}
+.nav-cta:hover{background:var(--acc);color:#fff;}
+.nav-burger{display:none;background:none;border:0;cursor:pointer;padding:8px;margin-left:4px;}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0;border-radius:2px;}
+@media(max-width:920px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:6px 24px 14px;box-shadow:0 10px 26px -14px rgba(15,16,19,.15);}
+  .nav-links.open{display:flex;}
+  .nav-links a{padding:12px 2px;font-size:16px;border-bottom:1px solid var(--line);}
+  .nav-burger{display:block;}
+}
+@media(max-width:560px){.nav-cta{display:none;}}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;font-size:15px;font-weight:500;border-radius:2px;transition:background .15s,color .15s,transform .15s;border:1px solid transparent;}
+.btn-primary{background:var(--acc);color:#fff;} .btn-primary:hover{background:var(--acc-ink);transform:translateY(-1px);}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--ink);} .btn-ghost:hover{background:var(--ink);color:var(--paper);}
+.btn .arr{transition:transform .2s;} .btn:hover .arr{transform:translateX(3px);}
+
+/* HERO */
+.hero{padding:84px 0 64px;border-bottom:1px solid var(--line);}
+.hero .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--acc);text-transform:uppercase;margin-bottom:22px;display:flex;align-items:center;gap:10px;}
+.hero .eyebrow::before{content:"";width:20px;height:1px;background:var(--acc);display:inline-block;}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4.4vw,56px);line-height:1.04;letter-spacing:-0.02em;color:var(--ink);margin:0 0 26px;max-width:18ch;}
+.hero h1 em{font-style:italic;color:var(--acc);}
+.hero .lead{font-size:19px;line-height:1.6;color:var(--ink-2);max-width:56ch;margin:0 0 32px;}
+.hero-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+.hero-proof{margin-top:52px;padding-top:32px;border-top:1px solid var(--line);display:flex;gap:40px;flex-wrap:wrap;}
+.hp-item{font-family:var(--mono);font-size:12px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;}
+.hp-item b{display:block;font-family:var(--serif);font-size:22px;font-weight:400;font-style:italic;color:var(--ink);letter-spacing:0;text-transform:none;margin-bottom:3px;}
+@media(max-width:820px){.hero{padding:56px 0 40px;}.hero .lead{font-size:17px;}.hero-proof{gap:24px;}}
+
+/* TRUST STRIP */
+.trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper-2);}
+.trust-inner{display:flex;flex-wrap:wrap;justify-content:center;}
+.trust-item{display:flex;align-items:center;gap:7px;padding:13px 12px;font-size:13px;color:var(--ink-2);font-weight:500;white-space:nowrap;}
+.trust-item svg.ti{width:15px;height:15px;stroke:var(--acc);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.trust-sep{width:1px;align-self:center;height:20px;background:var(--line-2);}
+@media(max-width:760px){.trust-sep{display:none;}.trust-item{padding:10px 14px;}}
+
+/* SECTION */
+.sec{padding:64px 0;} @media(max-width:820px){.sec{padding:44px 0;}}
+.sec-head{margin-bottom:50px;display:grid;grid-template-columns:1fr 2fr;gap:40px;align-items:end;}
+@media(max-width:820px){.sec-head{grid-template-columns:1fr;gap:14px;}}
+.sec-head .tag{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-top:1px solid var(--ink);padding-top:12px;color:var(--ink);}
+.sec-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3.2vw,40px);line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin:0;max-width:26ch;}
+.sec-head h2 em{font-style:italic;color:var(--acc);}
+.sec-head .sub{font-size:16px;color:var(--ink-3);margin:14px 0 0;max-width:58ch;line-height:1.6;}
+
+/* CARDS */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);}
+@media(max-width:820px){.cards{grid-template-columns:1fr;}}
+.card{padding:30px 28px 30px 0;border-bottom:1px solid var(--line);}
+.card:not(:nth-child(3n)){border-right:1px solid var(--line);padding-right:32px;}
+.card .k{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--acc);margin-bottom:14px;}
+.card h3{font-family:var(--sans);font-weight:600;font-size:17px;color:var(--ink);margin:0 0 8px;letter-spacing:-0.01em;}
+.card p{margin:0;font-size:15px;color:var(--ink-3);line-height:1.6;}
+@media(max-width:820px){.card{padding:22px 0;}.card:not(:nth-child(3n)){border-right:0;padding-right:0;}}
+.cards.two{grid-template-columns:repeat(2,1fr);}
+.cards.two .card:nth-child(odd){border-right:1px solid var(--line);padding-right:32px;}
+.cards.two .card:nth-child(even){border-right:0;padding-right:0;padding-left:32px;}
+@media(max-width:820px){.cards.two{grid-template-columns:1fr;}.cards.two .card{border-right:0;padding-right:0;padding-left:0;}}
+
+/* ARCHITEKTUR / ABLAUF */
+.arch{border-top:1px solid var(--line);}
+.arch-step{display:grid;grid-template-columns:80px 1fr;gap:28px;padding:32px 0;border-bottom:1px solid var(--line);align-items:start;}
+.arch-step .n{font-family:var(--serif);font-style:italic;font-size:52px;color:var(--acc);line-height:1;}
+.arch-step h3{font-family:var(--serif);font-weight:400;font-size:25px;margin:0 0 8px;color:var(--ink);line-height:1.2;}
+.arch-step p{margin:0;color:var(--ink-2);font-size:16px;max-width:62ch;}
+.arch-step .ex{margin-top:12px;font-family:var(--mono);font-size:12px;color:var(--ink-3);padding:10px 14px;border-left:2px solid var(--acc);background:var(--paper-2);}
+
+/* VERTICALS */
+.verticals{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+@media(max-width:820px){.verticals{grid-template-columns:1fr;}}
+.vc{background:var(--paper);padding:28px 26px;position:relative;transition:background .15s;}
+.vc:hover{background:var(--paper-2);}
+.vc.soon{background:var(--paper-2);opacity:.72;cursor:default;}
+.vc.soon:hover{background:var(--paper-2);}
+.vc .mark{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:500;margin-bottom:14px;display:inline-flex;align-items:center;gap:6px;}
+.vc.amts .mark{color:#1e3a5f;}
+.vc.brand .mark{color:#c41c1c;}
+.vc.para .mark{color:#0d7377;}
+.vc .mark::before{content:'';width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.vc.amts .mark::before{background:#1e3a5f;}
+.vc.brand .mark::before{background:#c41c1c;}
+.vc.para .mark::before{background:#0d7377;}
+.vc-soon-badge{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;border:1px solid var(--line-2);border-radius:2px;color:var(--ink-4);margin-left:6px;}
+.vc h3{font-family:var(--serif);font-weight:400;font-size:21px;color:var(--ink);margin:0 0 8px;line-height:1.2;}
+.vc p{margin:0 0 16px;font-size:14.5px;color:var(--ink-3);line-height:1.6;}
+.vc .vc-link{font-family:var(--mono);font-size:12px;color:var(--acc);text-transform:uppercase;letter-spacing:.04em;}
+.vc.soon .vc-link{color:var(--ink-4);pointer-events:none;}
+.vc .targets{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);}
+.vc .targets span{font-family:var(--mono);font-size:11px;color:var(--ink-3);padding:3px 7px;border:1px solid var(--line-2);border-radius:2px;}
+
+/* VS */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
+@media(max-width:720px){.vs{grid-template-columns:1fr;}}
+.vs .col{background:var(--paper);padding:28px 26px;}
+.vs .col.them{background:var(--paper-2);}
+.vs .col.us{box-shadow:inset 3px 0 0 var(--acc);}
+.vs .col .lbl{font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:7px;margin-bottom:12px;}
+.vs .col.them .lbl{color:var(--ink-4);}
+.vs .col.them .lbl::before{content:"\26A0";font-family:var(--sans);font-style:normal;color:#c8920a;font-size:15px;line-height:1;}
+.vs .col.us .lbl{color:var(--acc);}
+.vs .col.us .lbl::before{content:"\2713";font-family:var(--serif);font-style:normal;color:var(--ok);font-size:16px;line-height:1;}
+.vs .col h3{font-family:var(--serif);font-weight:400;font-size:20px;color:var(--ink);margin:0 0 8px;line-height:1.2;}
+.vs .col p{margin:0;font-size:14.5px;color:var(--ink-3);line-height:1.6;}
+.vs .col p b{color:var(--ink);}
+
+/* SOL (Leistungen) */
+.sol{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--line);}
+@media(max-width:720px){.sol{grid-template-columns:1fr;}}
+.sol-item{display:flex;gap:18px;padding:26px 28px 26px 0;border-bottom:1px solid var(--line);align-items:baseline;}
+.sol-item:nth-child(odd){border-right:1px solid var(--line);padding-right:36px;}
+@media(max-width:720px){.sol-item:nth-child(odd){border-right:0;padding-right:0;}}
+.sol-item .s{font-family:var(--mono);font-size:12px;color:var(--acc);flex-shrink:0;padding-top:3px;}
+.sol-item b{display:block;color:var(--ink);font-weight:600;font-size:16px;margin-bottom:3px;}
+.sol-item span.t{font-size:14.5px;color:var(--ink-3);line-height:1.55;}
+
+/* TILES */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+@media(max-width:820px){.tiles{grid-template-columns:1fr;}}
+.tile{background:var(--paper);padding:26px;}
+.tile .lbl{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--acc);margin-bottom:12px;}
+.tile h3{font-family:var(--serif);font-weight:400;font-size:21px;color:var(--ink);margin:0 0 8px;line-height:1.2;}
+.tile p{margin:0;font-size:14.5px;color:var(--ink-3);line-height:1.6;}
+
+/* MID-CTA */
+.midcta{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.midcta-inner{padding:22px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.midcta-inner .t{font-size:17px;color:var(--ink-2);} .midcta-inner .t b{color:var(--ink);}
+
+/* ÜBER */
+.about p{font-family:var(--serif);font-size:21px;line-height:1.5;color:var(--ink-2);margin:0 0 18px;}
+.about p b{color:var(--ink);font-style:normal;}
+
+/* CTA */
+.cta{background:var(--ink);color:#fff;}
+.cta-inner{padding:64px 0;text-align:center;}
+.cta h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.6vw,46px);line-height:1.1;color:#fff;margin:0 0 14px;}
+.cta p{color:rgba(255,255,255,.74);font-size:17px;max-width:52ch;margin:0 auto 30px;line-height:1.55;}
+.cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.cta .btn-light{background:#fff;color:var(--ink);font-weight:600;} .cta .btn-light:hover{background:var(--acc-wash);transform:translateY(-1px);}
+.cta .btn-outline{border-color:rgba(255,255,255,.4);color:#fff;} .cta .btn-outline:hover{background:rgba(255,255,255,.1);}
+
+/* FOOTER */
+.footer{background:var(--paper);border-top:1px solid var(--line);padding:52px 0 30px;font-size:13px;color:var(--ink-3);}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:44px;}
+@media(max-width:820px){.footer-grid{grid-template-columns:1fr 1fr;gap:30px;}}
+.footer h4{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin:0 0 12px;}
+.footer ul{list-style:none;margin:0;padding:0;} .footer ul li{margin-bottom:7px;}
+.footer ul li a:hover{color:var(--acc);}
+.sig{border-top:1px solid var(--line);padding-top:26px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;}
+.sig-text{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink-3);max-width:52ch;line-height:1.5;}
+.sig-text b{color:var(--ink);font-style:normal;font-weight:500;}
+.mini-marks{display:flex;gap:16px;align-items:center;font-family:var(--serif);font-size:14px;color:var(--ink-4);}
+.mini-marks a:hover{color:var(--acc);}
+.mini-marks .here{color:var(--acc);}
+.mini-marks .sep{color:var(--line-2);}
+.powered{margin-top:24px;font-family:var(--mono);font-size:11px;color:var(--ink-4);letter-spacing:.04em;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .6s,transform .6s;}
+.reveal.in{opacity:1;transform:translateY(0);}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px;border-radius:2px;}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></symbol>
+  <symbol id="i-plug" viewBox="0 0 24 24"><path d="M12 22v-5"/><path d="M15 8V2"/><path d="M9 8V2"/><path d="M17 8a1 1 0 0 1 1 1v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1z"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+</svg>
+
+<!-- NAV -->
+<nav class="nav"><div class="wrap nav-inner">
+  <a class="brand" href="#" aria-label="RAGSource Startseite">
+    <span class="fav">&gt;rag</span>
+    <span class="wm">
+      <span class="name">RAG<span class="ai">Source</span></span>
+      <span class="desc">Open Source · Agentic RAG Framework</span>
+    </span>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="#verticals">Verticals</a>
+    <a href="#fuer-entwickler">Für Entwickler</a>
+    <a href="#fuer-organisationen">Für Organisationen</a>
+    <a href="#kontakt">Kontakt</a>
+  </div>
+  <a class="nav-cta" href="https://github.com/ragsource-ai/ragsource-server" target="_blank" rel="noopener">GitHub ↗</a>
+  <button class="nav-burger" id="navBurger" aria-label="Menü" aria-expanded="false"><span></span><span></span><span></span></button>
+</div></nav>
+
+<!-- HERO -->
+<section class="hero"><div class="wrap">
+  <div class="eyebrow">Das Fundament hinter amtsschimmel, brandmeister und paragrafenreiter</div>
+  <h1>KI-Plattformen, die wissen was sie wissen sollen. <em>Quellengenau.</em></h1>
+  <p class="lead">RAGSource ist das Open-Source-Framework für Agentic RAG — der Wissens-Layer, auf dem rechtssichere, quellengebundene KI-Plattformen gebaut werden. Nicht Proof-of-Concept: drei produktiv betriebene Verticals auf derselben Basis. Prüfbar, offen, auditierbar.</p>
+  <div class="hero-actions">
+    <a href="https://github.com/ragsource-ai/ragsource-server" target="_blank" rel="noopener" class="btn btn-primary"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-github"/></svg> Auf GitHub ansehen <span class="arr">→</span></a>
+    <a href="#fuer-organisationen" class="btn btn-ghost">Eigene Domäne erschließen <span class="arr">→</span></a>
+  </div>
+  <div class="hero-proof">
+    <div class="hp-item"><b>3</b>Laufende Verticals</div>
+    <div class="hp-item"><b>AGPL-3.0</b>Lizenz</div>
+    <div class="hp-item"><b>MCP</b>Standard</div>
+    <div class="hp-item"><b>DE</b>Made in Germany</div>
+  </div>
+</div></section>
+
+<!-- TRUST STRIP -->
+<div class="trust"><div class="wrap trust-inner">
+  <div class="trust-item"><svg class="ti"><use href="#i-layers"/></svg> Agentic RAG Framework</div><div class="trust-sep"></div>
+  <div class="trust-item"><svg class="ti"><use href="#i-plug"/></svg> MCP-Standard</div><div class="trust-sep"></div>
+  <div class="trust-item"><svg class="ti"><use href="#i-file"/></svg> Quellengenau &amp; zitierfähig</div><div class="trust-sep"></div>
+  <div class="trust-item"><svg class="ti"><use href="#i-shield"/></svg> EU-souverän einsetzbar</div><div class="trust-sep"></div>
+  <div class="trust-item"><svg class="ti"><use href="#i-code"/></svg> Open Source · AGPL-3.0</div>
+</div></div>
+
+<!-- 01 WAS IST RAGSOURCE -->
+<section class="sec" id="was-ist-ragsource"><div class="wrap">
+  <div class="sec-head reveal">
+    <div class="tag">01 · Was RAGSource ist</div>
+    <div>
+      <h2>Das Framework, das LLMs mit kuratiertem Wissen <em>erdet.</em></h2>
+      <p class="sub">Generische Sprachmodelle halluzinieren, sobald präzises Fachwissen gefragt ist. RAGSource löst das strukturell — nicht durch Prompting, sondern durch verlässliches Kontextmanagement.</p>
+    </div>
+  </div>
+  <div class="cards reveal">
+    <div class="card"><div class="k">Wissens-Layer</div><h3>Der Maschinenraum hinter der KI-Plattform</h3><p>RAGSource ist kein Chat-Interface — sondern der Wissens-Layer darunter. Eine vollständige KI-Plattform besteht aus LLM + Frontend + RAGSource. Wir liefern den dritten Baustein: kuratiertes, quellengebundenes Domänenwissen.</p></div>
+    <div class="card"><div class="k">Retrieval</div><h3>Hierarchisches Kontextmanagement</h3><p>RAGSource navigiert eigenständig durch Wissenshierarchien: Katalog → Inhaltsverzeichnis → exakter Paragraf. Das Modell bekommt immer den relevanten Ausschnitt — nie mehr, nie weniger. Wortlaut statt Wahrscheinlichkeit.</p></div>
+    <div class="card"><div class="k">Standard</div><h3>Offenes Protokoll: MCP</h3><p>Kommunikation via Model Context Protocol — der offene Standard für LLM-Tool-Integration. Claude, ChatGPT, Langdock, Open WebUI: einmal eingerichtet, überall verfügbar. Kein Vendor Lock-in.</p></div>
+  </div>
+  <div class="cards reveal" style="margin-top:0;border-top:0;">
+    <div class="card"><div class="k">Domäne</div><h3>Nicht generisch — gezielt</h3><p>Recht, Vorschriften, interne Wissensdatenbanken — RAGSource ist nicht auf eine Domäne festgelegt. Die drei Verticals sind Referenzimplementierungen für öffentliche Verwaltung, Feuerwehr und Arbeitsrecht. Jede Domäne ist erschließbar.</p></div>
+    <div class="card"><div class="k">Transparenz</div><h3>Open Source — AGPL-3.0</h3><p>Vollständiger Quellcode auf GitHub. Keine proprietäre Black Box — jeder kann prüfen, wie RAGSource arbeitet. Code: AGPL-3.0 · Inhalte: CC-BY 4.0. Für kommerzielle Nutzung ohne Copyleft: Kontakt.</p></div>
+    <div class="card"><div class="k">Datenschutz</div><h3>Keine Datenweitergabe</h3><p>RAGSource überträgt ausschließlich Rechts- und Fachtexte an das anfragende Modell. Nutzeranfragen und interne Daten verlassen die eigene Umgebung nicht. Auditierbar, dokumentierbar.</p></div>
+  </div>
+</div></section>
+
+<!-- 02 ARCHITEKTUR -->
+<section class="sec" id="architektur" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);"><div class="wrap">
+  <div class="sec-head reveal">
+    <div class="tag">02 · Das RAGSource-Prinzip</div>
+    <div>
+      <h2>Wie kuratiertes Wissen ins LLM <em>kommt.</em></h2>
+      <p class="sub">Drei Schritte, vollautomatisch im Hintergrund — von der Frage bis zur quellengestützten Antwort.</p>
+    </div>
+  </div>
+  <div class="arch reveal">
+    <div class="arch-step">
+      <div class="n">1</div>
+      <div>
+        <h3>Kuratierte Quellen</h3>
+        <p>Gesetze, Vorschriften und Domänenwissen werden paragrafengenau strukturiert und laufend aktuell gehalten. Nicht das Trainingswissen eines Modells — sondern der aktuelle Originaltext.</p>
+        <div class="ex">Beispiel: FwG BW, FwDV, TVöD, GemO, Ortssatzungen, interne Richtlinien</div>
+      </div>
+    </div>
+    <div class="arch-step">
+      <div class="n">2</div>
+      <div>
+        <h3>RAGSource MCP-Server</h3>
+        <p>Das Framework empfängt die Anfrage des LLM-Assistenten, navigiert eigenständig durch die Wissenshierarchie und liefert den exakten Kontext zurück — ohne Datenweitergabe, ohne Middleware.</p>
+        <div class="ex">Catalog → TOC → Read: drei Stufen, damit das Modell immer am richtigen Paragraf landet</div>
+      </div>
+    </div>
+    <div class="arch-step" style="border-bottom:0;">
+      <div class="n">3</div>
+      <div>
+        <h3>Ihr LLM-Assistent</h3>
+        <p>Claude, ChatGPT, Langdock — jeder MCP-fähige Assistent gibt eine quellengestützte Antwort mit Paragraphennummer. Die Nutzeranfrage bleibt in der eigenen Umgebung.</p>
+        <div class="ex">Keine Sonderkommandos nötig: der Assistent ruft RAGSource automatisch auf</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 03 VERTICALS -->
+<section class="sec" id="verticals"><div class="wrap">
+  <div class="sec-head reveal">
+    <div class="tag">03 · RAGSource in der Praxis</div>
+    <div>
+      <h2>Drei laufende Verticals auf <em>derselben Basis.</em></h2>
+      <p class="sub">Kein Demo-System, kein Pilot. Drei produktiv betriebene Anwendungen — prüfbar, offen, im täglichen Einsatz.</p>
+    </div>
+  </div>
+  <div class="verticals reveal">
+    <a href="https://amtsschimmel.ai" target="_blank" rel="noopener" class="vc amts">
+      <div class="mark">amtsschimmel.ai</div>
+      <h3>Die KI, die Ihre Verwaltung einsetzen darf.</h3>
+      <p>Vollständige, betreute KI-Plattform für die öffentliche Verwaltung — in Deutschland gehostet, mit EU-Modellen, paragrafengenauem Fachrecht und Compliance-Paket (DSGVO, AVV, EU AI Act).</p>
+      <div class="vc-link">amtsschimmel.ai →</div>
+      <div class="targets"><span>Kommunen</span><span>Bürgermeister</span><span>Gemeinderäte</span></div>
+    </a>
+    <a href="https://brandmeister.ai" target="_blank" rel="noopener" class="vc brand">
+      <div class="mark">brandmeister.ai</div>
+      <h3>Feuerwehrwissen. Rechtssicher. Im Einsatz verfügbar.</h3>
+      <p>Feuerwehrgesetze, FwDV und geprüftes Praxiswissen in jeder KI. Für Kommandanten, Kreisbrandmeister und Ausbildungsverantwortliche.</p>
+      <div class="vc-link">brandmeister.ai →</div>
+      <div class="targets"><span>Kommandanten</span><span>Kreisbrandmeister</span><span>Ausbildung</span></div>
+    </a>
+    <div class="vc para soon">
+      <div class="mark">paragrafenreiter.ai <span class="vc-soon-badge">bald</span></div>
+      <h3>Rechtsdomänen. Zitierfähig im LLM.</h3>
+      <p>Arbeitsrecht, Betriebsvereinbarungen und Tarifrecht zitierfähig in jeder KI. Für HR-Professionals und Rechtsabteilungen.</p>
+      <div class="vc-link">paragrafenreiter.ai →</div>
+      <div class="targets"><span>HR</span><span>Rechtsabteilungen</span><span>Unternehmen</span></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- VS -->
+<section class="sec" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);"><div class="wrap">
+  <div class="sec-head reveal">
+    <div class="tag">04 · Der Unterschied</div>
+    <div><h2>Warum RAGSource — und nicht einfach ein besserer <em>Prompt?</em></h2></div>
+  </div>
+  <div class="vs reveal">
+    <div class="col them">
+      <div class="lbl">KI-Plattform ohne Wissens-Layer</div>
+      <h3>Gutes Modell, falsches Wissen.</h3>
+      <p>Starke LLMs antworten überzeugend — auch wenn sie falsch liegen. Ohne verankerte Rechtsquellen halluzinieren sie Paragraphen, zitieren veraltete Fassungen, erfinden Urteile. Das LSG NRW hat das öffentlich dokumentiert: <b>ein strukturelles Problem, kein Einzelfall.</b></p>
+    </div>
+    <div class="col us">
+      <div class="lbl">KI-Plattform mit RAGSource</div>
+      <h3>Dasselbe Modell — mit dem richtigen Wissen.</h3>
+      <p>RAGSource lädt zu jeder Frage den originalen, aktuellen Paragraf in den Kontext — mit Fundstelle, über die gesamte Normenhierarchie. <b>Wortlaut statt Wahrscheinlichkeit.</b> Was das Modell sagt, ist nachvollziehbar, prüfbar, zitierfähig.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- 05 FÜR ENTWICKLER -->
+<section class="sec" id="fuer-entwickler"><div class="wrap">
+  <div class="sec-head reveal">
+    <div class="tag">05 · Für Entwickler</div>
+    <div>
+      <h2>Eine praxisbewährte Architektur — <em>zum Nachbauen.</em></h2>
+      <p class="sub">RAGSource ist vollständig quelloffen. Wer eine eigene Wissensdatenbank für LLMs aufbauen will, findet hier den vollständigen Bauplan — nicht als Skizze, sondern als laufendes System.</p>
+    </div>
+  </div>
+  <div class="sol reveal">
+    <div class="sol-item"><span class="s">01</span><div><b>Vollständiger Quellcode auf GitHub</b><span class="t">AGPL-3.0 — Copyleft auch für Netzwerkdienste. Inhalte: CC-BY 4.0. Für kommerzielle Nutzung ohne AGPL-Pflichten steht eine kommerzielle Lizenz zur Verfügung.</span></div></div>
+    <div class="sol-item"><span class="s">02</span><div><b>MCP-Server auf Cloudflare Workers + D1</b><span class="t">Serverless, skalierbar, kosteneffizient. Die gesamte Retrieval-Logik läuft als Edge-Function.</span></div></div>
+    <div class="sol-item"><span class="s">03</span><div><b>Agentic Retrieval-Kette: Catalog → TOC → Read</b><span class="t">Drei MCP-Tools, die das LLM autonom aufruft. Keine feste Suchanfrage — das Modell navigiert selbst durch die Hierarchie.</span></div></div>
+    <div class="sol-item"><span class="s">04</span><div><b>Drei Referenzimplementierungen</b><span class="t">amtsschimmel.ai, brandmeister.ai, paragrafenreiter.ai: drei verschiedene Domänen, derselbe Bauplan. Ideal als Ausgangspunkt.</span></div></div>
+    <div class="sol-item"><span class="s">05</span><div><b>Content-Pipeline</b><span class="t">Werkzeuge zum Aufbereiten von Quelldokumenten — von der PDF bis zur strukturierten, hierarchischen Wissensdatenbank.</span></div></div>
+    <div class="sol-item"><span class="s">06</span><div><b>Domänenagnostisch</b><span class="t">Medizin, Ingenieurwesen, interne Handbücher — RAGSource ist nicht auf Recht festgelegt. Die Verticals sind Referenz, kein Limit.</span></div></div>
+  </div>
+  <div style="margin-top:32px;" class="reveal">
+    <a href="https://github.com/ragsource-ai/ragsource-server" target="_blank" rel="noopener" class="btn btn-primary"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-github"/></svg> Zum Repository →</a>
+  </div>
+</div></section>
+
+<!-- MID-CTA -->
+<div class="midcta reveal"><div class="wrap midcta-inner">
+  <div class="t">Eigene Domäne, eigene Daten, eigene Instanz? <b>Wir helfen beim Aufbau.</b></div>
+  <a href="mailto:kontakt@ragsource.ai?subject=RAGSource%20Beratung" class="btn btn-primary">Gespräch vereinbaren →</a>
+</div></div>
+
+<!-- 06 FÜR ORGANISATIONEN -->
+<section class="sec" id="fuer-organisationen" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);"><div class="wrap">
+  <div class="sec-head reveal">
+    <div class="tag">06 · Für Organisationen</div>
+    <div>
+      <h2>Eigenes Domänenwissen im LLM — <em>ohne IT-Großprojekt.</em></h2>
+      <p class="sub">Sie möchten interne Richtlinien, Satzungen, Betriebsvereinbarungen oder Fachvorschriften zitierfähig in Ihrer KI verfügbar machen. RAGSource macht das möglich — in Stufen, ohne Vendor Lock-in.</p>
+    </div>
+  </div>
+  <div class="tiles reveal">
+    <div class="tile"><div class="lbl">Einstieg</div><h3>Öffentliche Verticals sofort nutzen</h3><p>amtsschimmel.ai, brandmeister.ai, paragrafenreiter.ai — öffentliche Rechtsquellen sofort verfügbar. Kein Beschaffungsvorgang, keine IT-Freigabe. Der Einstieg, der Vertrauen aufbaut.</p></div>
+    <div class="tile"><div class="lbl">Managed</div><h3>Eigene betreute Instanz</h3><p>Ihre Satzungen, Ordnungen, Richtlinien oder Schulungsunterlagen werden kuratiert, strukturiert und laufend aktuell gehalten. RAGSource übernimmt Betrieb und Pflege — Sie arbeiten.</p></div>
+    <div class="tile"><div class="lbl">Custom</div><h3>Vollständige KI-Plattform</h3><p>Dedizierte Instanz mit gesichertem Zugang, eigenen Datenbanken, EU-Hosting, führenden Modellen und Compliance-Paket. Alles aus einer Hand — wie amtsschimmel.ai für die Verwaltung.</p></div>
+  </div>
+  <div class="about reveal" style="margin-top:48px;padding-top:40px;border-top:1px solid var(--line);max-width:820px;">
+    <p>RAGSource wird betrieben von <b>Christian Traub</b> — Ingenieur, Feuerwehrkommandant und Governance-Praktiker mit über 15 Jahren KI- und Digitalisierungserfahrung. Entstanden aus der täglichen Praxis, nicht aus dem Pitch.</p>
+    <p>Kein Start-up, das fancy klingt — sondern Substanz, die Sie vor Gemeinderat, Personalrat oder Geschäftsführung vertreten können.</p>
+  </div>
+</div></section>
+
+<!-- CTA -->
+<section class="cta" id="kontakt"><div class="wrap cta-inner reveal">
+  <h2>Reden wir über Ihre Domäne.</h2>
+  <p>Kommunales Recht, Feuerwehrvorschriften, Tarifrecht, interne Handbücher — oder etwas ganz anderes. Erstes Gespräch unverbindlich.</p>
+  <div class="cta-actions">
+    <a href="mailto:kontakt@ragsource.ai?subject=RAGSource%20Beratung" class="btn btn-light">Gespräch anfragen →</a>
+    <a href="https://github.com/ragsource-ai/ragsource-server" target="_blank" rel="noopener" class="btn btn-outline"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-github"/></svg> GitHub</a>
+  </div>
+</div></section>
+
+<!-- FOOTER -->
+<footer class="footer"><div class="wrap">
+  <div class="footer-grid">
+    <div><h4>RAGSource</h4><p style="margin:0;color:var(--ink-3);max-width:40ch">Open-Source-Framework für Agentic Retrieval Augmented Generation. Quellengenau, zitierfähig, auditierbar.</p><div class="powered" style="margin-top:12px;">AGPL-3.0 · Made in Germany</div></div>
+    <div><h4>Framework</h4><ul>
+      <li><a href="#was-ist-ragsource">Was ist RAGSource?</a></li>
+      <li><a href="#architektur">Architektur</a></li>
+      <li><a href="https://github.com/ragsource-ai/ragsource-server" target="_blank" rel="noopener">GitHub →</a></li>
+    </ul></div>
+    <div><h4>Verticals</h4><ul>
+      <li><a href="https://amtsschimmel.ai" target="_blank" rel="noopener">amtsschimmel.ai</a></li>
+      <li><a href="https://brandmeister.ai" target="_blank" rel="noopener">brandmeister.ai</a></li>
+      <li><a href="#verticals" style="color:var(--ink-4)">paragrafenreiter.ai (bald)</a></li>
+    </ul></div>
+    <div><h4>Rechtliches</h4><ul>
+      <li><a href="impressum.html">Impressum</a></li>
+      <li><a href="datenschutz.html">Datenschutz</a></li>
+      <li><a href="mailto:kontakt@ragsource.ai">Kontakt</a></li>
+    </ul></div>
+  </div>
+  <div class="sig">
+    <div class="sig-text">Gebaut von <b>Christian Traub</b> — Feuerwehrkommandant, Ingenieur und Governance-Praktiker — weil verlässliches Domänenwissen im LLM kein Luxus sein sollte.</div>
+    <div class="mini-marks">
+      <span class="here">RAGSource</span><span class="sep">·</span>
+      <a href="https://amtsschimmel.ai" target="_blank" rel="noopener">amtsschimmel</a><span class="sep">·</span>
+      <a href="https://brandmeister.ai" target="_blank" rel="noopener">brandmeister</a>
+    </div>
+  </div>
+</div></footer>
+
+<script>
+const rio=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>rio.observe(el));
+const navBurger=document.getElementById('navBurger'),navLinks=document.getElementById('navLinks');
+if(navBurger&&navLinks){
+  navBurger.addEventListener('click',()=>{const o=navLinks.classList.toggle('open');navBurger.setAttribute('aria-expanded',o);});
+  navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');navBurger.setAttribute('aria-expanded','false');}));
+}
+</script>
+</body>
+</html>
