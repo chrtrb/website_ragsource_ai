@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.bunny.net; font-src https://fonts.bunny.net; img-src 'self' data:; form-action 'self' mailto:; base-uri 'self'; object-src 'none'; frame-ancestors 'self'">
-<title>RAGSource — Ihre KI-Infrastruktur für Domänen, in denen Verlässlichkeit zählt.</title>
-<meta name="description" content="RAGSource implementiert und betreibt KI-Vollplattformen auf Open-Source-Basis — EU-souverän, paragrafengenau, compliance-konform. Das Unternehmen hinter amtsschimmel.ai, brandmeister.ai und paragrafenreiter.ai.">
+<title>RAGSource — Wissensarchitektur &amp; Governance für Unternehmens-KI</title>
+<meta name="description" content="RAGSource baut die Wissensarchitektur, mit der Unternehmens-KI verlässlich, governance-konform und anbieterunabhängig funktioniert. Potenzialanalyse, Zielarchitektur, Betrieb — aus einer Hand. Live: amtsschimmel.ai, brandmeister.ai.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon-ragsource.svg">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ragsource.ai">
-<meta property="og:title" content="RAGSource — Ihre KI-Infrastruktur für Domänen, in denen Verlässlichkeit zählt.">
-<meta property="og:description" content="KI-Vollplattform auf Open-Source-Basis. EU-souverän, paragrafengenau, prüfbar. Das Unternehmen hinter amtsschimmel, brandmeister und paragrafenreiter.">
+<meta property="og:title" content="RAGSource — Wissensarchitektur & Governance für Unternehmens-KI">
+<meta property="og:description" content="Wir strukturieren das Wissen Ihres Unternehmens so, dass KI zu einem echten, dauerhaften Vorteil wird — nicht zum Werkzeug Einzelner. Live: amtsschimmel.ai, brandmeister.ai.">
 <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
 <link href="https://fonts.bunny.net/css?family=instrument-serif:400,400i|jetbrains-mono:400,500&display=swap" rel="stylesheet">
 <style>
@@ -70,7 +70,7 @@ a{color:inherit;text-decoration:none;} button{font:inherit;cursor:pointer;backgr
 .hero{padding:88px 0 72px;border-bottom:1px solid var(--line);}
 .hero .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--acc);text-transform:uppercase;margin-bottom:22px;display:flex;align-items:center;gap:10px;}
 .hero .eyebrow::before{content:"";width:20px;height:1px;background:var(--acc);display:inline-block;}
-.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.8vw,62px);line-height:1.04;letter-spacing:-0.02em;color:var(--ink);margin:0 0 24px;max-width:18ch;}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4.4vw,56px);line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin:0 0 24px;max-width:20ch;}
 .hero h1 em{font-style:italic;color:var(--acc);}
 .hero .lead{font-size:19px;line-height:1.65;color:var(--ink-3);max-width:54ch;margin:0 0 36px;}
 .hero-actions{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;}
@@ -96,33 +96,58 @@ a{color:inherit;text-decoration:none;} button{font:inherit;cursor:pointer;backgr
 .ref .rdesc{font-size:13px;color:var(--ink-3);margin-top:5px;line-height:1.5;}
 @media(max-width:720px){.refs-inner{flex-direction:column;}.ref{border-right:0;border-bottom:1px solid var(--line);}.ref:last-child{border-bottom:0;}}
 
-/* PROBLEM */
-.problem{padding:72px 0;background:var(--paper-2);border-bottom:1px solid var(--line);}
-.prob-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px;}
-@media(max-width:640px){.prob-grid{grid-template-columns:1fr;}}
-.prob{background:var(--paper-2);padding:30px 32px;}
-.prob .n{font-family:var(--serif);font-style:italic;font-size:34px;color:var(--acc);opacity:.22;line-height:1;margin-bottom:14px;}
-.prob h3{font-family:var(--sans);font-weight:600;font-size:16px;color:var(--ink);margin:0 0 7px;letter-spacing:-0.01em;}
-.prob p{margin:0;font-size:14.5px;color:var(--ink-3);line-height:1.6;}
+/* DIAGNOSE */
+.diagnose{padding:72px 0;background:var(--paper-2);border-bottom:1px solid var(--line);}
+.diagnose .prose{margin-top:32px;max-width:70ch;}
+.diagnose .prose p{font-family:var(--serif);font-size:20px;line-height:1.55;color:var(--ink-2);margin:0 0 16px;}
+.diagnose .prose p:last-child{margin-bottom:0;}
+.diagnose .prose p b{color:var(--ink);}
 
-/* PRODUKTE */
-.produkte{padding:80px 0;border-bottom:1px solid var(--line);}
+/* POTENZIALANALYSE */
+.potenzial{padding:72px 0;border-bottom:1px solid var(--line);}
+.pot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px;}
+@media(max-width:720px){.pot-grid{grid-template-columns:1fr;}}
+.pot{background:var(--paper);padding:26px 28px;}
+.pot .n{font-family:var(--mono);font-size:12px;color:var(--acc);margin-bottom:10px;}
+.pot h3{font-family:var(--sans);font-weight:600;font-size:15.5px;color:var(--ink);margin:0 0 6px;letter-spacing:-0.01em;}
+.pot p{margin:0;font-size:14px;color:var(--ink-3);line-height:1.6;}
+.potenzial-note{margin-top:24px;font-size:15px;color:var(--ink-3);line-height:1.6;max-width:66ch;}
+
+/* WAS WIR TUN */
+.produkte{padding:80px 0;border-bottom:1px solid var(--line);background:var(--paper-2);}
 .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px;}
 @media(max-width:820px){.prod-grid{grid-template-columns:1fr;}}
-.prod{background:var(--paper);padding:36px 30px;display:flex;flex-direction:column;}
+.prod{background:var(--paper-2);padding:36px 30px;display:flex;flex-direction:column;}
 .prod .lbl{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--acc);margin-bottom:18px;}
 .prod h3{font-family:var(--serif);font-weight:400;font-size:clamp(20px,2vw,25px);color:var(--ink);margin:0 0 12px;line-height:1.15;letter-spacing:-0.01em;}
-.prod p{margin:0;font-size:15px;color:var(--ink-3);line-height:1.65;flex:1;padding-bottom:24px;}
-.prod .prod-link{font-family:var(--mono);font-size:12px;color:var(--acc);text-transform:uppercase;letter-spacing:.04em;display:inline-flex;align-items:center;gap:6px;margin-top:auto;}
+.prod p{margin:0;font-size:15px;color:var(--ink-3);line-height:1.65;flex:1;}
 @media(max-width:820px){.prod{padding:26px 22px;}}
 
-/* ANWENDUNGEN */
+/* WIE WIR ARBEITEN */
+.arbeiten{padding:72px 0;border-bottom:1px solid var(--line);}
+.arb-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px;}
+@media(max-width:900px){.arb-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.arb-grid{grid-template-columns:1fr;}}
+.arb-item{background:var(--paper);padding:26px 26px;}
+.arb-item .step{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--acc);margin-bottom:10px;}
+.arb-item h3{font-family:var(--sans);font-weight:600;font-size:15.5px;color:var(--ink);margin:0 0 7px;letter-spacing:-0.01em;}
+.arb-item p{margin:0;font-size:14px;color:var(--ink-3);line-height:1.6;}
+.arb-note{margin-top:24px;padding:18px 20px;border:1px solid var(--line);background:var(--paper-2);font-size:15px;color:var(--ink-3);line-height:1.6;max-width:72ch;}
+.arb-note b{color:var(--ink);}
+
+/* PAYOFF */
+.payoff{padding:80px 0;background:var(--paper-2);border-bottom:1px solid var(--line);text-align:center;}
+.payoff .inner{max-width:720px;margin:0 auto;}
+.payoff h2{font-family:var(--serif);font-weight:400;font-style:italic;font-size:clamp(26px,3.6vw,44px);color:var(--ink);line-height:1.2;margin:0 0 24px;letter-spacing:-0.01em;}
+.payoff p{font-size:17px;color:var(--ink-3);line-height:1.65;margin:0 auto 14px;max-width:58ch;}
+.payoff .note{font-family:var(--mono);font-size:12px;color:var(--ink-4);text-transform:uppercase;letter-spacing:.03em;margin-top:20px;}
+
+/* ANWENDUNGEN / REFERENZEN */
 .anwendungen{padding:72px 0;border-bottom:1px solid var(--line);}
 .app-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px;}
 @media(max-width:720px){.app-grid{grid-template-columns:1fr;}}
 .app{background:var(--paper);padding:32px 28px;transition:background .15s;display:flex;flex-direction:column;}
-.app:not(.app-soon):hover{background:var(--paper-2);}
-.app-soon{opacity:.72;cursor:default;}
+.app:hover{background:var(--paper-2);}
 .app .vm{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:500;margin-bottom:14px;display:flex;align-items:center;gap:7px;}
 .app.v-amts .vm{color:#1e3a5f;} .app.v-amts .vm::before{content:'';width:7px;height:7px;border-radius:50%;background:#1e3a5f;flex-shrink:0;}
 .app.v-brand .vm{color:#c41c1c;} .app.v-brand .vm::before{content:'';width:7px;height:7px;border-radius:50%;background:#c41c1c;flex-shrink:0;}
@@ -130,35 +155,13 @@ a{color:inherit;text-decoration:none;} button{font:inherit;cursor:pointer;backgr
 .app h3{font-family:var(--serif);font-weight:400;font-size:20px;color:var(--ink);margin:0 0 8px;line-height:1.2;}
 .app p{margin:0 0 16px;font-size:14px;color:var(--ink-3);line-height:1.6;flex:1;}
 .app .alink{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--acc);margin-top:auto;}
-.app-soon .alink{color:var(--ink-4);}
-.app-badge{font-family:var(--mono);font-size:10px;padding:2px 6px;border:1px solid var(--line-2);border-radius:2px;color:var(--ink-4);margin-left:4px;vertical-align:1px;}
+.anw-note{margin-top:24px;font-size:14px;color:var(--ink-4);line-height:1.6;max-width:66ch;}
 
 /* MID-CTA */
 .midcta{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
 .midcta-inner{padding:22px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
 .midcta-inner .t{font-size:16px;color:var(--ink-3);} .midcta-inner .t b{color:var(--ink);}
 .midcta-inner a{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--acc);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;}
-
-/* LEISTUNGEN */
-.leistungen{padding:72px 0;background:var(--paper-2);border-bottom:1px solid var(--line);}
-.leis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px;}
-@media(max-width:720px){.leis-grid{grid-template-columns:1fr;}}
-.leis{background:var(--paper-2);padding:26px 28px;}
-.leis .n{font-family:var(--mono);font-size:12px;color:var(--acc);margin-bottom:10px;}
-.leis h3{font-family:var(--sans);font-weight:600;font-size:15.5px;color:var(--ink);margin:0 0 6px;letter-spacing:-0.01em;}
-.leis p{margin:0;font-size:14px;color:var(--ink-3);line-height:1.6;}
-
-/* FRAMEWORK */
-.framework{padding:72px 0;border-bottom:1px solid var(--line);}
-.fw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px;}
-@media(max-width:720px){.fw-grid{grid-template-columns:1fr;}}
-.fw-item{background:var(--paper);padding:26px 28px;}
-.fw-item .layer{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--acc);margin-bottom:10px;}
-.fw-item h3{font-family:var(--sans);font-weight:600;font-size:15.5px;color:var(--ink);margin:0 0 7px;letter-spacing:-0.01em;}
-.fw-item p{margin:0;font-size:14px;color:var(--ink-3);line-height:1.6;}
-.fw-footer{margin-top:20px;display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;color:var(--ink-3);padding:12px 15px;border:1px solid var(--line);}
-.fw-footer .lbl{color:var(--acc);}
-.fw-footer a:hover{color:var(--acc);}
 
 /* ÜBER UNS */
 .about{padding:72px 0;border-bottom:1px solid var(--line);}
@@ -202,16 +205,12 @@ a{color:inherit;text-decoration:none;} button{font:inherit;cursor:pointer;backgr
 :focus-visible{outline:2px solid var(--acc);outline-offset:2px;border-radius:2px;}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
 @media(max-width:820px){
-  .problem,.leistungen,.anwendungen,.framework,.about,.produkte{padding:48px 0;}
+  .diagnose,.potenzial,.arbeiten,.about,.produkte,.anwendungen,.payoff{padding:48px 0;}
   .cta-inner{padding:56px 0;}
 }
 </style>
 </head>
 <body>
-
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-github" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></symbol>
-</svg>
 
 <!-- NAV -->
 <nav class="nav"><div class="wrap nav-inner">
@@ -219,36 +218,35 @@ a{color:inherit;text-decoration:none;} button{font:inherit;cursor:pointer;backgr
     <span class="fav">&gt;rag</span>
     <div class="wm">
       <div class="name">RAGSource</div>
-      <div class="desc">KI-Wissensinfrastruktur</div>
+      <div class="desc">Wissensarchitektur &amp; Governance</div>
     </div>
   </a>
   <div class="nav-links" id="navLinks">
-    <a href="#produkte">Produkte</a>
-    <a href="#anwendungen">Anwendungen</a>
-    <a href="#framework">Framework</a>
+    <a href="#potenzialanalyse">Potenzialanalyse</a>
+    <a href="#referenzen">Referenzen</a>
+    <a href="#ueber-uns">Über</a>
     <a href="#kontakt">Kontakt</a>
   </div>
-  <a class="nav-cta" href="mailto:christian@ragsource.ai?subject=RAGSource%20Demo">Demo anfragen</a>
+  <a class="nav-cta" href="mailto:christian@ragsource.ai?subject=Strategiegespr%C3%A4ch%20anfragen">Strategiegespräch anfragen</a>
   <button class="nav-burger" id="navBurger" aria-label="Menü" aria-expanded="false"><span></span><span></span><span></span></button>
 </div></nav>
 
 <!-- HERO -->
 <section class="hero"><div class="wrap">
-  <div class="eyebrow">Das Unternehmen hinter amtsschimmel · brandmeister · paragrafenreiter</div>
-  <h1>Ihre KI-Infrastruktur für Domänen, in denen <em>Verlässlichkeit</em> zählt.</h1>
-  <p class="lead">Wir implementieren und betreiben KI-Vollplattformen auf Open-Source-Basis in Deutschland — gehostet, zentral gewartet, mit paragrafengenauem Retrieval von Rechtsquellen und Unternehmenswissen.</p>
+  <div class="eyebrow">Christian Traub · Wissensarchitektur &amp; Governance für Unternehmens-KI</div>
+  <h1>Hat die KI bei Ihnen schon den Nutzen erzeugt, den Sie sich erhofft haben?</h1>
+  <p class="lead">RAGSource strukturiert das Wissen Ihres Unternehmens so, dass KI zu einem echten, dauerhaften Vorteil wird — nicht zum Werkzeug Einzelner.</p>
   <div class="hero-actions">
     <div class="action-wrap">
-      <a href="mailto:christian@ragsource.ai?subject=RAGSource%20Demo" class="btn btn-primary">Demo vereinbaren <span class="arr">→</span></a>
-      <span class="hint">30 Minuten · kostenlos · unverbindlich</span>
+      <a href="mailto:christian@ragsource.ai?subject=Strategiegespr%C3%A4ch%20anfragen&body=Wo%20stehen%20Sie%20gerade%20mit%20KI%20in%20Ihrem%20Unternehmen%3F" class="btn btn-primary">Strategiegespräch anfragen <span class="arr">→</span></a>
+      <span class="hint">Unverbindlich · keine Kosten · keine Verpflichtung</span>
     </div>
   </div>
   <div class="hero-trust">
-    <div class="it">Open-Source-Stack</div>
-    <div class="it">DSGVO- &amp; AI-Act-konform</div>
-    <div class="it">Modell-agnostisch · BYOM</div>
-    <div class="it">Quellen sicher &amp; transparent</div>
-    <div class="it">Hosting Deutschland</div>
+    <div class="it">Anbieterunabhängig</div>
+    <div class="it">Datenschutz &amp; Compliance von Anfang an mitgedacht</div>
+    <div class="it">Vollständig unter Ihrer Kontrolle</div>
+    <div class="it">Live im produktiven Einsatz</div>
   </div>
 </div></section>
 
@@ -260,14 +258,14 @@ a{color:inherit;text-decoration:none;} button{font:inherit;cursor:pointer;backgr
         <a href="https://amtsschimmel.ai" target="_blank" rel="noopener">
           <div class="rname">amtsschimmel.ai</div>
           <div class="rtag">Öffentliche Verwaltung</div>
-          <div class="rdesc">KI-Instanzen für Kommunen und Behörden — Fachrecht, Compliance, Betrieb aus einer Hand.</div>
+          <div class="rdesc">Verwaltungsmitarbeiter bekommen zitierfähige Antworten aus tausenden Seiten Ortsrecht — live im Einsatz.</div>
         </a>
       </div>
       <div class="ref">
         <a href="https://brandmeister.ai" target="_blank" rel="noopener">
           <div class="rname">brandmeister.ai</div>
           <div class="rtag">Feuerwehr &amp; BOS</div>
-          <div class="rdesc">Feuerwehrgesetze, FwDV, Einsatztaktik — paragrafengenau für Kommandanten und Ausbilder.</div>
+          <div class="rdesc">Kommandanten und Ausbilder arbeiten mit paragrafengenauem Feuerwehrrecht — ohne selbst zu suchen.</div>
         </a>
       </div>
       <div class="ref">
@@ -279,197 +277,152 @@ a{color:inherit;text-decoration:none;} button{font:inherit;cursor:pointer;backgr
       </div>
       <div class="ref">
         <div class="ref-yours">
-          <div class="rname">Ihre eigene RAGSource AI</div>
-          <div class="rtag">Ihre Domäne · Ihre Richtlinien</div>
-          <div class="rdesc">Komplett implementierbar nach Ihren unternehmensinternen Anforderungen und Wissensquellen.</div>
+          <div class="rname">Ihre eigene RAGSource</div>
+          <div class="rtag">Ihre Domäne · Ihre Kontrolle</div>
+          <div class="rdesc">Vollständig privat, nach Ihren unternehmensinternen Anforderungen und Wissensquellen.</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- PROBLEM -->
-<section class="problem"><div class="wrap">
+<!-- DIAGNOSE -->
+<section class="diagnose"><div class="wrap">
   <div class="reveal">
-    <div class="sec-label">Das Problem</div>
-    <h2 class="sec-h2">KI im Einsatz — aber auf <em>welcher Grundlage?</em></h2>
+    <div class="sec-label">Die Ausgangslage</div>
+    <h2 class="sec-h2">Nicht die KI ist das <em>Problem.</em></h2>
   </div>
-  <div class="prob-grid reveal">
-    <div class="prob">
-      <div class="n">01</div>
-      <h3>Allgemeine KI halluziniert in Fachfragen.</h3>
-      <p>LLMs ohne kuratierte Quellen erfinden Paragrafennummern, Fristen und Anforderungen — ohne Quellennachweis und ohne Nachvollziehbarkeit. Die Modelle sind darauf trainiert zu antworten, nicht zu wissen, was sie nicht wissen.</p>
-    </div>
-    <div class="prob">
-      <div class="n">02</div>
-      <h3>Unternehmensrichtlinien sind nicht angeschlossen.</h3>
-      <p>Interne Dokumente, Richtlinien und die firmeneigene Knowledge Base sind der Unternehmens-KI meist unbekannt. Benutzer- und Zugriffsmanagement, Duplikate, flaches semantisches Retrieval, Wissen das nicht KI-ready strukturiert ist — die Herausforderungen häufen sich.</p>
-    </div>
-    <div class="prob">
-      <div class="n">03</div>
-      <h3>Rechtliche Herausforderungen bleiben ungelöst.</h3>
-      <p>US-Cloud ohne AVV, EU AI Act, DSGVO, ISO 27001 — viele Organisationen nutzen KI-Dienste, ohne die rechtlichen Anforderungen vollständig erfüllt zu haben. Besonders riskant, wenn Mitarbeitende private KI-Plattformen für Arbeitsaufgaben verwenden.</p>
-    </div>
-    <div class="prob">
-      <div class="n">04</div>
-      <h3>Zu schnell, zu riskant — zu abhängig.</h3>
-      <p>Heute GPT-4, morgen eingestellt, übermorgen Preisanpassung. Auf einen Anbieter zu setzen bedeutet Abhängigkeit. Eine modulare Open-Source-Architektur, bei der jede Komponente austauschbar ist, ist die einzige sinnvolle Antwort auf die Geschwindigkeit der KI-Entwicklung.</p>
-    </div>
+  <div class="prose reveal">
+    <p>Die Antworten sind selten zuverlässig — nicht weil die KI schlecht ist, sondern weil niemand entschieden hat, welches Wissen wie hineingehört. Jede Abteilung baut ihren eigenen Assistenten, mit eigenen Dokumenten, die sich überschneiden statt aufeinander zu verweisen. Ohne diese Struktur bleibt selbst die beste KI im Kern eine <b>gefährliche Ratemaschine.</b></p>
+    <p>Wer das in einem Jahr noch pflegt, weiß meist niemand — und ob Unternehmensrichtlinien, Prozesse und kritisches internes Wissen dabei wirklich geschützt bleiben, auch nicht. Jeder Monat, der so weiterläuft, kostet doppelt: Budget für Tools, die niemand konsequent nutzt, und das Risiko, dass ungeprüfte Antworten in echte Entscheidungen einfließen.</p>
+    <p>Die naheliegenden Antworten — ein weiteres Tool einführen, abwarten, die Wissenspflege nebenbei im Team unterbringen — greifen zu kurz, so gut die Absicht auch war. Das Problem liegt nicht im Werkzeug oder am Einsatz der Mitarbeitenden, sondern in der fehlenden Struktur dahinter.</p>
   </div>
 </div></section>
 
-<!-- PRODUKTE -->
-<section class="produkte" id="produkte"><div class="wrap">
+<!-- POTENZIALANALYSE -->
+<section class="potenzial" id="potenzialanalyse"><div class="wrap">
   <div class="reveal">
-    <div class="sec-label">Produkte</div>
-    <h2 class="sec-h2">Drei Angebote. <em>Eine Expertise.</em></h2>
+    <div class="sec-label">Der erste Schritt</div>
+    <h2 class="sec-h2">Potenzialanalyse <em>Unternehmenswissen.</em></h2>
+    <p class="sec-intro">Wir schauen uns an, wie Ihr Unternehmenswissen heute genutzt wird — und was es leisten könnte. Passt es nach dem Gespräch, ist die Potenzialanalyse der erste konkrete, geplante Schritt.</p>
+  </div>
+  <div class="pot-grid reveal">
+    <div class="pot">
+      <div class="n">01</div>
+      <h3>Struktur</h3>
+      <p>Ist Ihr Wissen so aufbereitet, dass es sich nicht widerspricht, sondern aufeinander aufbaut?</p>
+    </div>
+    <div class="pot">
+      <div class="n">02</div>
+      <h3>KI-Fähigkeit</h3>
+      <p>Kann eine KI damit zuverlässig und korrekt arbeiten — oder rät sie mehr, als sie eigentlich weiß?</p>
+    </div>
+    <div class="pot">
+      <div class="n">03</div>
+      <h3>Verantwortung &amp; Sicherheit</h3>
+      <p>Ist klar, wer zuständig ist, wie Sie die Kontrolle über Ihr eigenes Wissen behalten und rechtlich abgesichert bleiben?</p>
+    </div>
+  </div>
+  <p class="potenzial-note reveal">Die Potenzialanalyse ist auf wenige Wochen angelegt und endet mit einer klaren Empfehlung — nicht mit einem weiteren Projekt, das erst geprüft werden muss.</p>
+</div></section>
+
+<!-- WAS WIR TUN -->
+<section class="produkte"><div class="wrap">
+  <div class="reveal">
+    <div class="sec-label">Was wir tun</div>
+    <h2 class="sec-h2">Drei Ebenen. <em>Eine Struktur.</em></h2>
   </div>
   <div class="prod-grid reveal">
-
     <div class="prod">
-      <div class="lbl">KI-Vollplattform · Full-Service</div>
-      <h3>Ihre eigene KI — vertraut wie ChatGPT, aber vollständig in Ihrer Hand.</h3>
-      <p>Open WebUI mit führenden EU- und Open-Source-Modellen, RAGSource-Wissenslayer für Rechtsquellen und Unternehmensdaten. Multi-User-tauglich, Single Sign-On, Anbindung bestehender Speicher, Bring-Your-Own-Model. Einmalig eingerichtet, zentral gewartet — als laufender Betriebsvertrag.</p>
-      <a href="mailto:christian@ragsource.ai?subject=KI-Vollplattform%20Demo" class="prod-link">Demo anfragen →</a>
+      <div class="lbl">Wissensarchitektur</div>
+      <h3>Aus verstreutem Wissen eine belastbare Struktur.</h3>
+      <p>Taxonomien, Beziehungen, Zitierfähigkeit — Ihr Wissen wird so aufbereitet, dass eine KI es korrekt einordnen und verlässlich wiedergeben kann.</p>
     </div>
-
     <div class="prod">
-      <div class="lbl">RAGSource-Integration · Standalone</div>
-      <h3>Paragrafengenaues Wissen für jede KI-Plattform.</h3>
-      <p>Rechtsquellen von EU bis Ortsrecht, plus Unternehmensrichtlinien und Fachdatenbanken — per Model Context Protocol (MCP) in bestehende Systeme integrierbar. Laufend aktuell, regional filterbar, mit exaktem Quellennachweis. Lizenzierbar für eigene Plattformen.</p>
-      <a href="mailto:christian@ragsource.ai?subject=RAGSource-Integration%20Anfrage" class="prod-link">Integration anfragen →</a>
+      <div class="lbl">Governance &amp; Unabhängigkeit</div>
+      <h3>Kuratiertes Wissen, das sicher Ihres bleibt.</h3>
+      <p>Rechtlich abgesichert, ohne Abhängigkeit von einem Anbieter oder Modell — Sie behalten die Kontrolle, heute und bei jedem Modellwechsel.</p>
     </div>
-
     <div class="prod">
-      <div class="lbl">Beratung &amp; Konzeption</div>
-      <h3>Wissenstaxonomien und Ontologien — bevor gebaut wird.</h3>
-      <p>Welches Wissen gehört in die KI, in welcher Struktur, mit welchen Metadaten, welchen Zugriffsregeln? Konzeption der Wissensarchitektur auf Basis echter Domänenkenntnis — anbieterunabhängig. Der entscheidende Schritt vor der Implementierung.</p>
-      <a href="mailto:christian@ragsource.ai?subject=Beratung%20Anfrage" class="prod-link">Beratung anfragen →</a>
+      <div class="lbl">Prozessintegration</div>
+      <h3>Eingebettet in bestehende Abläufe.</h3>
+      <p>Keine Insel-Lösung neben dem Tagesgeschäft, sondern Teil der Prozesse, in denen Ihr Unternehmen tatsächlich arbeitet.</p>
     </div>
-
   </div>
 </div></section>
 
-<!-- ANWENDUNGEN -->
-<section class="anwendungen" id="anwendungen"><div class="wrap">
+<!-- WIE WIR ARBEITEN -->
+<section class="arbeiten"><div class="wrap">
   <div class="reveal">
-    <div class="sec-label">Referenzanwendungen</div>
-    <h2 class="sec-h2">Drei Verticals. <em>Dieselbe Basis.</em></h2>
-    <p class="sec-intro">Die Methodik läuft in Produktion — in drei eigenständigen Domänenplattformen, die zeigen was möglich ist.</p>
+    <div class="sec-label">Wie wir arbeiten</div>
+    <h2 class="sec-h2">Vom Status quo zur <em>Zielarchitektur.</em></h2>
+  </div>
+  <div class="arb-grid reveal">
+    <div class="arb-item">
+      <div class="step">Schritt 1</div>
+      <h3>Potenzialanalyse</h3>
+      <p>Status quo und Potenzial Ihres Unternehmenswissens, in wenigen Wochen.</p>
+    </div>
+    <div class="arb-item">
+      <div class="step">Schritt 2</div>
+      <h3>Zielarchitektur</h3>
+      <p>Das Zielbild Ihrer Wissensontologie und der Anbindung an Ihren KI-Stack.</p>
+    </div>
+    <div class="arb-item">
+      <div class="step">Schritt 3</div>
+      <h3>Umsetzung / Begleitung</h3>
+      <p>Sie bauen selbst, wir begleiten — oder wir setzen für Sie um.</p>
+    </div>
+    <div class="arb-item">
+      <div class="step">Schritt 4</div>
+      <h3>Betrieb</h3>
+      <p>Laufende Pflege, Weiterentwicklung, Governance — als Managed Service.</p>
+    </div>
+  </div>
+  <div class="arb-note reveal"><b>In den meisten Fällen empfehlen wir den Betrieb als Managed Service</b> — weil Wissenspflege kein einmaliges Projekt ist, sondern ein kontinuierlicher Prozess. Haben Sie bereits ein Team, das diese Pflege dauerhaft selbst leisten kann, begleiten wir Sie stattdessen beim eigenen Aufbau.</div>
+</div></section>
+
+<!-- PAYOFF -->
+<section class="payoff"><div class="wrap"><div class="inner reveal">
+  <h2>Wir machen Ihre KI zu Ihrer KI.</h2>
+  <p>Am Ende der Reise steht ein Wissensmodell, das Ihre KI wirklich befähigt — mit dem Urteilsvermögen Ihrer zuverlässigsten, langjährigen Mitarbeiter, nicht mit dem einer beliebigen Ratemaschine. Es wird zum zentralen Werkzeug für Governance in der KI-Ära: die Instanz, an der sich jede KI-Anwendung in Ihrem Unternehmen orientiert, unabhängig vom eingesetzten Modell.</p>
+  <div class="note">Das aufzubauen ist anspruchsvolle Arbeit — und genau dafür brauchen Sie einen Partner, der sie beherrscht.</div>
+</div></div></section>
+
+<!-- MID-CTA -->
+<div class="midcta"><div class="wrap midcta-inner">
+  <div class="t"><b>Ihre Ausgangslage ist eine andere?</b> Das Vorgehen ist domänenagnostisch — sprechen Sie uns an.</div>
+  <a href="mailto:christian@ragsource.ai?subject=Strategiegespr%C3%A4ch%20anfragen">Strategiegespräch anfragen →</a>
+</div></div>
+
+<!-- REFERENZEN -->
+<section class="anwendungen" id="referenzen"><div class="wrap">
+  <div class="reveal">
+    <div class="sec-label">Referenzen</div>
+    <h2 class="sec-h2">Die Methodik läuft in <em>Produktion.</em></h2>
+    <p class="sec-intro">Nutzer bekommen zitierfähige, sofort einsatzbereite Antworten aus tausenden Seiten Rechtstext — statt selbst zu suchen und zu hoffen, dass es stimmt.</p>
   </div>
   <div class="app-grid reveal">
     <a href="https://amtsschimmel.ai" target="_blank" rel="noopener" class="app v-amts">
       <div class="vm">amtsschimmel.ai</div>
       <h3>KI für die öffentliche Verwaltung.</h3>
-      <p>Betreute KI-Instanz für Kommunen und Behörden — EU-Modelle, Fachrecht-Layer für BW und Bundesrecht, Compliance-Paket aus einer Hand.</p>
+      <p>Verwaltungsmitarbeiter finden die passende Vorschrift in Sekunden, mit exaktem Quellennachweis — statt sich durch Ortsrecht zu wühlen.</p>
       <div class="alink">amtsschimmel.ai →</div>
     </a>
     <a href="https://brandmeister.ai" target="_blank" rel="noopener" class="app v-brand">
       <div class="vm">brandmeister.ai</div>
       <h3>KI für die Feuerwehr.</h3>
-      <p>Feuerwehrgesetze, FwDV, Einsatztaktik und Ausbildungswissen — paragrafengenau für Kommandanten, Kreisbrandmeister und Ausbilder.</p>
+      <p>Kommandanten und Ausbilder greifen im Einsatz und in der Ausbildung auf verlässliches Feuerwehrrecht zu — paragrafengenau, auch unter Zeitdruck.</p>
       <div class="alink">brandmeister.ai →</div>
     </a>
-    <div class="app v-para app-soon">
-      <div class="vm">paragrafenreiter.ai <span class="app-badge">bald</span></div>
+    <a href="https://paragrafenreiter.ai" target="_blank" rel="noopener" class="app v-para">
+      <div class="vm">paragrafenreiter.ai</div>
       <h3>Rechtsdomänen für alle.</h3>
-      <p>Arbeitsrecht, Betriebsvereinbarungen, Tarifrecht — zugänglich und kostenlos für individuelle Nutzung.</p>
-      <div class="alink">paragrafenreiter.ai</div>
-    </div>
-  </div>
-</div></section>
-
-<!-- MID-CTA -->
-<div class="midcta"><div class="wrap midcta-inner">
-  <div class="t"><b>Ihre Domäne ist eine andere?</b> Kein Problem — das Framework ist domänenagnostisch. Sprechen Sie uns an.</div>
-  <a href="mailto:christian@ragsource.ai?subject=RAGSource%20Demo">Demo vereinbaren →</a>
-</div></div>
-
-<!-- LEISTUNGEN -->
-<section class="leistungen"><div class="wrap">
-  <div class="reveal">
-    <div class="sec-label">Leistungsportfolio</div>
-    <h2 class="sec-h2">Unser <em>Angebot.</em></h2>
-  </div>
-  <div class="leis-grid reveal">
-    <div class="leis">
-      <div class="n">01</div>
-      <h3>Beratung &amp; Anforderungsanalyse</h3>
-      <p>Domänenziele, Nutzungsszenarien, Compliance-Anforderungen — bevor die erste Zeile konfiguriert wird.</p>
-    </div>
-    <div class="leis">
-      <div class="n">02</div>
-      <h3>Konzeption der Wissensarchitektur</h3>
-      <p>Welche Quellen, welche Granularität, welche Zugriffsregeln? Die Struktur bestimmt die Qualität der Antworten.</p>
-    </div>
-    <div class="leis">
-      <div class="n">03</div>
-      <h3>Implementierung &amp; Integration</h3>
-      <p>Deployment auf deutschen Servern, Anbindung bestehender Systeme (SSO, Speicher, Verzeichnisse), Rollout.</p>
-    </div>
-    <div class="leis">
-      <div class="n">04</div>
-      <h3>Laufender Betrieb &amp; Wartung</h3>
-      <p>Monitoring, Updates, Modell-Tuning, Quellen-Aktualisierung — kein interner IT-Aufwand nötig.</p>
-    </div>
-    <div class="leis">
-      <div class="n">05</div>
-      <h3>Integriertes Compliance-Paket</h3>
-      <p>AVV-Vorlage, Datenschutz-Folgenabschätzung, IT-Sicherheitskonzept — damit Ihre Rechtsabteilung ruhig schläft.</p>
-    </div>
-    <div class="leis">
-      <div class="n">06</div>
-      <h3>Schulung &amp; Enablement</h3>
-      <p>Nutzerschulungen, Prompt-Kompetenz, Administratoren-Training — damit die Investition tatsächlich wirkt.</p>
-    </div>
-  </div>
-</div></section>
-
-<!-- FRAMEWORK -->
-<section class="framework" id="framework"><div class="wrap">
-  <div class="reveal">
-    <div class="sec-label">Das Framework</div>
-    <h2 class="sec-h2">Open-Source-Stack — komplett, <em>prüfbar</em>, in eigener Hand.</h2>
-    <p class="sec-intro">Keine Black Box. Der Stack besteht aus bewährten Open-Source-Komponenten — mit dem Vertrautheitsgrad von ChatGPT, aber unter vollständiger eigener Kontrolle.</p>
-  </div>
-  <div class="fw-grid reveal">
-    <div class="fw-item">
-      <div class="layer">UI-Schicht</div>
-      <h3>Open WebUI</h3>
-      <p>Vertrautes Chat-Interface — wie ChatGPT, aber in eigener Hand. Multi-User, Rollenverwaltung, Datei-Upload, Plugins. Keine proprietäre Abhängigkeit.</p>
-    </div>
-    <div class="fw-item">
-      <div class="layer">Wissens-Schicht</div>
-      <h3>RAGSource MCP-Server</h3>
-      <p>Paragrafengenaue Retrieval-Engine für Rechtsquellen (EU bis Ortsrecht) und Unternehmensdaten. Via Model Context Protocol — jede MCP-fähige KI kann sich anbinden.</p>
-    </div>
-    <div class="fw-item">
-      <div class="layer">Modell-Schicht</div>
-      <h3>Freie Modellwahl · BYOM</h3>
-      <p>Europäische Modelle (Mistral u. a.), Open-Source-Modelle (Llama, Qwen), Cloud-APIs (Claude, GPT). Lokales Hosting oder Cloud — Modellwechsel ohne Neuimplementierung. Modelle können auch über RAGSource bezogen werden.</p>
-    </div>
-    <div class="fw-item">
-      <div class="layer">Infrastruktur</div>
-      <h3>Deutschland · EU-souverän</h3>
-      <p>Alle Daten auf deutschen Servern. Kein Training auf Ihren Daten. DSGVO-konform by Design — kein Nachgedanke, kein Audit-Risiko.</p>
-    </div>
-    <div class="fw-item">
-      <div class="layer">Zugang &amp; Integration</div>
-      <h3>SSO &amp; bestehende Systeme</h3>
-      <p>Single Sign-On (OIDC/SAML), Anbindung bestehender Dokumentenspeicher (SharePoint, S3, NAS, DMS), API-Zugang für eigene Applikationen.</p>
-    </div>
-    <div class="fw-item">
-      <div class="layer">Lizenz &amp; Kontrolle</div>
-      <h3>Komplett prüfbar · Kein Lock-in</h3>
-      <p>Vollständige Transparenz über den Stack — auditierbar, erweiterbar, ohne Herstellerbindung. Jede Komponente kann ausgetauscht oder in eigenen Betrieb übernommen werden.</p>
-    </div>
-  </div>
-  <div style="margin-top:20px;">
-    <a href="https://github.com/ragsource-ai/ragsource-server" target="_blank" rel="noopener" class="fw-footer">
-      <span class="lbl">GitHub →</span>
-      <span>ragsource-ai/ragsource-server</span>
+      <p>Arbeits- und Tarifrecht, verständlich aufbereitet — auch für Nicht-Juristen nachvollziehbar, worauf sich eine Antwort stützt.</p>
+      <div class="alink">paragrafenreiter.ai →</div>
     </a>
   </div>
+  <p class="anw-note reveal">Diese Projekte sind öffentlich, weil es öffentliches Recht ist. Für Unternehmen gilt das nicht — Ihre Wissensbasis bleibt vollständig privat und unter eigener Kontrolle.</p>
 </div></section>
 
 <!-- ÜBER UNS -->
@@ -479,9 +432,9 @@ a{color:inherit;text-decoration:none;} button{font:inherit;cursor:pointer;backgr
   </div>
   <div class="about-grid reveal">
     <div class="about-body">
-      <p>Christian Traub verbindet <b>technische Tiefe mit organisationalem Durchblick</b> — 15 Jahre in internationalen Ingenieur- und Transformationsprojekten, Governance-Architektur und KI-Produktentwicklung.</p>
-      <p>Nach dem Aufbau von kutalla GmbH, einem KI-Startup zur Identifikation von Automatisierungspotenzialen aus IT-Nutzungsmustern, entstand RAGSource aus einer konkreten Erkenntnis: KI-Systeme, die in kritischen Domänen verlässlich funktionieren sollen, brauchen eine andere Wissensinfrastruktur — keine allgemeinen Modelle, sondern kuratierte, hierarchisch abrufbare Quellen.</p>
-      <p>Die Systeme, die hier entwickelt werden, kommen im echten Betrieb zum Einsatz — täglich, in Kommunen, Feuerwehren und Rechtspraxis. Christian ist aktiver Feuerwehrkommandant in Bad Boll, Baden-Württemberg.</p>
+      <p>15 Jahre <b>Organisationsentwicklung, Governance und Prozessarchitektur</b> bei international führenden Industrieunternehmen — heute in globaler Führungsverantwortung für KI-gestützte Prozessoptimierung.</p>
+      <p>RAGSource ist die offene Grundlage, auf der ich seit 2019 baue — von einem KI-System zur Automatisierungspotenzial-Analyse bei kutalla GmbH (technisch erfolgreich, der Markt war noch nicht so weit) bis zu amtsschimmel.ai und brandmeister.ai, live im Einsatz.</p>
+      <p>Dazu 15 Jahre Führung im Ehrenamt als Feuerwehrkommandant in Bad Boll, Baden-Württemberg — Entscheidungsstrukturen unter Druck, nicht am Whiteboard gelernt.</p>
       <div class="mono">christian@ragsource.ai · Made in Germany</div>
     </div>
     <div class="portrait-ph">
@@ -493,12 +446,11 @@ a{color:inherit;text-decoration:none;} button{font:inherit;cursor:pointer;backgr
 
 <!-- CTA -->
 <section class="cta" id="kontakt"><div class="wrap cta-inner reveal">
-  <h2>Reden wir über Ihre Domäne.</h2>
-  <p>30 Minuten Demo — wir zeigen, wie das für Ihre Anwendung konkret aussieht.</p>
-  <div class="cta-hint">Kostenlos · Unverbindlich · Anbieterunabhängig</div>
+  <h2>Reden wir über Ihr Unternehmenswissen.</h2>
+  <p>Ein Strategiegespräch — wir schauen gemeinsam, wo Sie stehen und was der erste sinnvolle Schritt ist.</p>
+  <div class="cta-hint">Unverbindlich · Kostenfrei · Anbieterunabhängig</div>
   <div class="cta-actions">
-    <a href="mailto:christian@ragsource.ai?subject=RAGSource%20Demo" class="btn btn-light">Demo vereinbaren →</a>
-    <a href="https://github.com/ragsource-ai/ragsource-server" target="_blank" rel="noopener" class="btn btn-outline"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-github"/></svg> GitHub · Open Source</a>
+    <a href="mailto:christian@ragsource.ai?subject=Strategiegespr%C3%A4ch%20anfragen&body=Wo%20stehen%20Sie%20gerade%20mit%20KI%20in%20Ihrem%20Unternehmen%3F" class="btn btn-light">Strategiegespräch anfragen →</a>
   </div>
 </div></section>
 
@@ -507,19 +459,18 @@ a{color:inherit;text-decoration:none;} button{font:inherit;cursor:pointer;backgr
   <div class="footer-row">
     <div class="footer-brand">
       <div style="font-family:var(--sans);font-weight:600;font-size:16px;color:var(--ink)">RAGSource</div>
-      <p>KI-Wissensinfrastruktur — implementiert, betrieben, beraten. Das Unternehmen hinter amtsschimmel, brandmeister und paragrafenreiter.</p>
+      <p>Wissensarchitektur &amp; Governance für Unternehmens-KI. Das Unternehmen hinter amtsschimmel, brandmeister und paragrafenreiter.</p>
       <div class="mono">Made in Germany</div>
     </div>
-    <div class="footer-col"><h4>Produkte</h4><ul>
-      <li><a href="#produkte">KI-Vollplattform</a></li>
-      <li><a href="#produkte">RAGSource-Integration</a></li>
-      <li><a href="#produkte">Beratung &amp; Konzeption</a></li>
+    <div class="footer-col"><h4>Angebot</h4><ul>
+      <li><a href="#potenzialanalyse">Potenzialanalyse</a></li>
+      <li><a href="#potenzialanalyse">Wissensarchitektur</a></li>
+      <li><a href="#potenzialanalyse">Governance &amp; Betrieb</a></li>
     </ul></div>
-    <div class="footer-col"><h4>Anwendungen</h4><ul>
+    <div class="footer-col"><h4>Referenzen</h4><ul>
       <li><a href="https://amtsschimmel.ai" target="_blank" rel="noopener">amtsschimmel.ai</a></li>
       <li><a href="https://brandmeister.ai" target="_blank" rel="noopener">brandmeister.ai</a></li>
-      <li><span style="color:var(--ink-4)">paragrafenreiter.ai (bald)</span></li>
-      <li><a href="https://github.com/ragsource-ai/ragsource-server" target="_blank" rel="noopener">GitHub →</a></li>
+      <li><a href="https://paragrafenreiter.ai" target="_blank" rel="noopener">paragrafenreiter.ai</a></li>
     </ul></div>
     <div class="footer-col"><h4>Rechtliches</h4><ul>
       <li><a href="impressum.html">Impressum</a></li>
