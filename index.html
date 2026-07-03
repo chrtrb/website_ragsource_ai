@@ -52,43 +52,47 @@ a{color:inherit;text-decoration:none;} button{font:inherit;cursor:pointer;backgr
 /* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;font-size:15px;font-weight:500;border-radius:2px;transition:background .15s,color .15s,transform .15s;border:1px solid transparent;}
 .btn-primary{background:var(--acc);color:#fff;} .btn-primary:hover{background:var(--acc-ink);transform:translateY(-1px);}
-.btn .arr{transition:transform .2s;} .btn:hover .arr{transform:translateX(3px);}
 
 /* SECTION HEADER */
 .sec-label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-4);margin-bottom:10px;}
 .sec-h2{font-family:var(--serif);font-weight:400;font-size:clamp(24px,3vw,38px);color:var(--ink);margin:0;letter-spacing:-0.02em;line-height:1.1;}
 .sec-h2 em{font-style:italic;color:var(--acc);}
-.sec-intro{margin-top:12px;font-size:19px;color:var(--ink-3);line-height:1.65;max-width:60ch;}
+.sec-intro{margin-top:12px;font-size:19px;color:var(--ink-3);line-height:1.65;}
 
 /* HERO */
-.hero{padding:88px 0 72px;border-bottom:1px solid var(--line);}
+.hero{padding:88px 0 28px;border-bottom:1px solid var(--line);text-align:center;}
 .hero .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--acc);text-transform:uppercase;margin-bottom:22px;}
-.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4.4vw,56px);line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin:0 0 24px;max-width:20ch;}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4.4vw,56px);line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin:0 auto 24px;}
 .hero h1 em{font-style:italic;color:var(--acc);}
-.hero .lead{font-size:19px;line-height:1.65;color:var(--ink-3);max-width:54ch;margin:0 0 36px;}
-.hero-actions{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;}
-.hero-actions .action-wrap{display:flex;flex-direction:column;}
+.hero .lead{font-size:19px;line-height:1.65;color:var(--ink-3);max-width:70ch;margin:0 auto 36px;}
 @media(max-width:820px){.hero{padding:56px 0 44px;}.hero .lead{font-size:17px;}}
 
 /* REFERENZ-STRIP */
 .refs{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper-2);}
-.refs-lead{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-4);margin:0;padding:20px 0 0;text-align:center;}
+.refs-lead{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-4);margin:0;padding:16px 0 0;text-align:center;}
 .refs-inner{display:flex;justify-content:center;flex-wrap:wrap;}
-.ref{padding:0;display:flex;flex-direction:column;border-right:1px solid var(--line);flex:1;min-width:200px;}
-.ref:last-child{border-right:0;}
-.ref a{display:flex;flex-direction:column;align-items:center;gap:4px;padding:22px 28px;height:100%;text-align:center;transition:background .15s;}
+.ref{padding:0;display:flex;flex-direction:column;flex:1;min-width:200px;}
+.ref a{display:flex;align-items:center;justify-content:center;gap:8px;padding:16px 28px;height:100%;transition:background .15s;}
 .ref a:hover{background:var(--paper);}
-.ref .rname{font-family:var(--sans);font-weight:600;font-size:15px;color:var(--ink);letter-spacing:-0.01em;}
-.ref .rtag{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--acc);margin-top:2px;}
-.ref .rdesc{font-size:13px;color:var(--ink-3);margin-top:5px;line-height:1.5;}
-.refs-note{font-size:13px;color:var(--ink-3);line-height:1.6;padding:16px 0 20px;text-align:justify;hyphens:auto;}
-@media(max-width:720px){.refs-inner{flex-direction:column;}.ref{border-right:0;border-bottom:1px solid var(--line);}.ref:last-child{border-bottom:0;}}
+.ref-badge{font-family:var(--mono);font-weight:500;font-size:13px;letter-spacing:0;line-height:1;color:#fff;padding:4px 7px;border-radius:3px;display:inline-flex;align-items:center;}
+.ref-wm{display:flex;flex-direction:column;line-height:1;text-align:left;}
+.ref-name{font-family:var(--sans);font-weight:600;font-size:15px;line-height:1;color:var(--ink);letter-spacing:-0.01em;}
+.ref-desc{font-family:var(--mono);font-size:9.5px;line-height:1;letter-spacing:.04em;color:var(--ink-4);margin-top:3px;}
+.ref.v-amts .ref-badge{background:#1e3a5f;}
+.ref.v-brand .ref-badge{background:#c41c1c;}
+.ref.v-para .ref-badge{background:#0d7377;}
+.refs-note{font-size:13px;color:var(--ink-3);line-height:1.6;padding:0 0 16px;text-align:center;}
+.refs-cta{display:flex;justify-content:center;padding-bottom:20px;}
+@media(max-width:720px){.refs-inner{flex-direction:column;}}
 
 /* DIAGNOSE */
 .diagnose{padding:72px 0;background:var(--paper);border-bottom:1px solid var(--line);}
 .diagnose.loesung{background:var(--paper-2);}
-.ctx-diagram{width:100%;max-width:600px;height:auto;margin:32px 0 8px;display:block;}
-.diagnose .prose{margin-top:32px;max-width:70ch;}
+.loesung-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:32px;}
+@media(max-width:820px){.loesung-grid{grid-template-columns:1fr;gap:28px;}}
+.loesung-grid .prose{margin-top:0;}
+.ctx-diagram{width:100%;height:auto;display:block;}
+.diagnose .prose{margin-top:32px;}
 .diagnose .prose p{font-family:var(--serif);font-size:18px;line-height:1.6;color:var(--ink-2);margin:0 0 16px;}
 .diagnose .prose p:last-child{margin-bottom:0;}
 .diagnose .prose p b{color:var(--ink);}
@@ -177,13 +181,8 @@ a{color:inherit;text-decoration:none;} button{font:inherit;cursor:pointer;backgr
 <!-- HERO -->
 <section class="hero"><div class="wrap">
   <div class="eyebrow">Wissensarchitektur &amp; Kontextmanagement für KI-Systeme</div>
-  <h1>Gute KI beginnt mit gut strukturiertem <em>Wissen.</em></h1>
-  <p class="lead">RAGSource entwickelt die Wissensarchitektur, mit der Ihre KI verlässlich, nachvollziehbar und in Ihrem Sinne arbeitet.</p>
-  <div class="hero-actions">
-    <div class="action-wrap">
-      <a href="mailto:christian@ragsource.ai" class="btn btn-primary">Kontakt <span class="arr">→</span></a>
-    </div>
-  </div>
+  <h1>Gute <em>KI</em> beginnt mit gut strukturiertem <em>Wissen.</em></h1>
+  <p class="lead">RAGSource gibt Ihrer KI den richtigen Kontext — präzise, verlässlich und nachvollziehbar, damit Ihre KI in Ihrem Sinne für Sie arbeitet.</p>
 </div></section>
 
 <!-- REFERENZ-STRIP -->
@@ -191,29 +190,27 @@ a{color:inherit;text-decoration:none;} button{font:inherit;cursor:pointer;backgr
   <div class="wrap">
     <p class="refs-lead">RAGSource ist u.a. die Grundlage hinter folgenden öffentlich zugänglichen Projekten:</p>
     <div class="refs-inner">
-      <div class="ref">
+      <div class="ref v-amts">
         <a href="https://amtsschimmel.ai" target="_blank" rel="noopener">
-          <div class="rname">amtsschimmel.ai</div>
-          <div class="rtag">Für die öffentliche Verwaltung</div>
-          <div class="rdesc">Verwaltungsmitarbeiter finden die passende Vorschrift in Sekunden, mit exaktem Quellennachweis — live im Einsatz.</div>
+          <span class="ref-badge">&gt;rag</span>
+          <span class="ref-wm"><span class="ref-name">amtsschimmel.ai</span><span class="ref-desc">KI für die Verwaltung</span></span>
         </a>
       </div>
-      <div class="ref">
+      <div class="ref v-brand">
         <a href="https://brandmeister.ai" target="_blank" rel="noopener">
-          <div class="rname">brandmeister.ai</div>
-          <div class="rtag">Für die Feuerwehr</div>
-          <div class="rdesc">Kommandanten und Ausbilder greifen paragrafengenau auf Feuerwehrrecht zu — auch unter Zeitdruck.</div>
+          <span class="ref-badge">&gt;rag</span>
+          <span class="ref-wm"><span class="ref-name">brandmeister.ai</span><span class="ref-desc">Die Feuerwehr-KI</span></span>
         </a>
       </div>
-      <div class="ref">
+      <div class="ref v-para">
         <a href="https://paragrafenreiter.ai" target="_blank" rel="noopener">
-          <div class="rname">paragrafenreiter.ai</div>
-          <div class="rtag">Gesamtes deutsches Recht</div>
-          <div class="rdesc">Offen als Erweiterung für jedes KI-System — und als private Instanz Grundlage für Corporate Governance &amp; Policies.</div>
+          <span class="ref-badge">&gt;rag</span>
+          <span class="ref-wm"><span class="ref-name">paragrafenreiter.ai</span><span class="ref-desc">Rechtsquellen für alle</span></span>
         </a>
       </div>
     </div>
-    <p class="refs-note">Alle drei basieren auf RAGSource-Lösungen mit öffentlich zugänglichem Wissen — deshalb öffentlich einsehbar. Die Methodik dahinter ist branchenneutral und in Ihrer privaten Instanz natürlich erweiterbar um Ihr Unternehmenswissen und Ihre Policies.</p>
+    <p class="refs-note">In privaten Instanzen übernimmt RAGSource das Kontextmanagement für internes Organisationswissen, Daten, Policies, Verträge und vieles mehr. Als Anbindung an Ihre bestehende KI-Infrastruktur oder als EU-souveräne Komplettplattform.</p>
+    <div class="refs-cta"><a href="mailto:christian@ragsource.ai" class="btn btn-primary">Kontakt</a></div>
   </div>
 </div>
 
@@ -239,44 +236,48 @@ a{color:inherit;text-decoration:none;} button{font:inherit;cursor:pointer;backgr
     <h2 class="sec-h2">Von der Knowledge Base zum <em>Kontextmanagement.</em></h2>
     <p class="sec-intro">Kontextmanagement heißt: Ihre KI bekommt in jedem Moment genau das Wissen, das sie für die jeweilige Aufgabe braucht — nicht mehr, nicht weniger.</p>
   </div>
-  <svg class="ctx-diagram reveal" viewBox="0 0 600 262" role="img" aria-label="Wissenspakete aus dem Unternehmen fließen in das RAGSource-Kontextmanagement, die KI antwortet auf Basis des tatsächlichen Unternehmenswissens">
-    <style>
-      .cd-chip{fill:var(--paper);stroke:var(--line-2);}
-      .cd-chipt{font-family:var(--mono);font-size:11px;fill:var(--ink-2);}
-      .cd-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.5px;fill:var(--ink-4);}
-      .cd-hub{fill:var(--acc);}
-      .cd-hubt{font-family:var(--serif);font-size:22px;fill:#fff;}
-      .cd-hubs{font-family:var(--mono);font-size:11px;fill:var(--acc-wash);letter-spacing:.3px;}
-      .cd-ans{fill:var(--paper);stroke:var(--acc);stroke-width:1.5;}
-      .cd-anst{font-family:var(--serif);font-size:19px;fill:var(--ink);}
-      .cd-arr{stroke:var(--ink-4);stroke-width:1.4;fill:none;}
-    </style>
-    <text class="cd-lbl" x="300" y="13" text-anchor="middle">IHR UNTERNEHMENSWISSEN</text>
-    <rect class="cd-chip" x="0"   y="24" width="90" height="34" rx="5"/><text class="cd-chipt" x="45"  y="46" text-anchor="middle">Ziele</text>
-    <rect class="cd-chip" x="94"  y="24" width="98" height="34" rx="5"/><text class="cd-chipt" x="143" y="46" text-anchor="middle">Richtlinien</text>
-    <rect class="cd-chip" x="196" y="24" width="90" height="34" rx="5"/><text class="cd-chipt" x="241" y="46" text-anchor="middle">Prozesse</text>
-    <rect class="cd-chip" x="290" y="24" width="106" height="34" rx="5"/><text class="cd-chipt" x="343" y="46" text-anchor="middle">Produktwissen</text>
-    <rect class="cd-chip" x="400" y="24" width="118" height="34" rx="5"/><text class="cd-chipt" x="459" y="46" text-anchor="middle">Erfahrungswissen</text>
-    <rect class="cd-chip" x="522" y="24" width="78" height="34" rx="5"/><text class="cd-chipt" x="561" y="46" text-anchor="middle">Gesetze</text>
-    <path class="cd-arr" d="M45 58 L45 92" marker-end="url(#cda)"/>
-    <path class="cd-arr" d="M143 58 L143 92" marker-end="url(#cda)"/>
-    <path class="cd-arr" d="M241 58 L241 92" marker-end="url(#cda)"/>
-    <path class="cd-arr" d="M343 58 L343 92" marker-end="url(#cda)"/>
-    <path class="cd-arr" d="M459 58 L459 92" marker-end="url(#cda)"/>
-    <path class="cd-arr" d="M561 58 L561 92" marker-end="url(#cda)"/>
-    <rect class="cd-hub" x="0" y="98" width="600" height="64" rx="8"/>
-    <text class="cd-hubt" x="300" y="128" text-anchor="middle">RAGSource Kontextmanagement</text>
-    <text class="cd-hubs" x="300" y="150" text-anchor="middle">präzise bis ins Detail · laufend aktuell</text>
-    <path class="cd-arr" d="M300 162 L300 196" marker-end="url(#cda)"/>
-    <rect class="cd-ans" x="0" y="202" width="600" height="56" rx="8"/>
-    <text class="cd-anst" x="300" y="236" text-anchor="middle">Antwort, die auf Ihrem tatsächlichen Wissen beruht</text>
-    <defs>
-      <marker id="cda" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="var(--ink-4)"/></marker>
-    </defs>
-  </svg>
+  <div class="loesung-grid reveal">
+    <div class="prose">
+      <p>Wir sorgen dafür, dass Ihre KI immer die relevanten Wissenspakete aus Ihrem Unternehmen zur Verfügung hat, die sie braucht, um in Ihrem Sinne zu arbeiten. Das können Ziele sein, die erreicht werden müssen, Unternehmensrichtlinien, Prozessbeschreibungen, Produktwissen, praktisches Erfahrungswissen und technische Dokumentationen — kurzum, genau das, womit auch Ihre besten und erfahrensten Mitarbeiter ihren Job machen.</p>
+      <p>Entsprechend sicher muss es sein — auch darum kümmern wir uns, entweder innerhalb Ihrer Infrastruktur oder als gehosteter Service auf unseren deutschen Servern.</p>
+    </div>
+    <svg class="ctx-diagram" viewBox="0 0 600 262" role="img" aria-label="Wissenspakete aus dem Unternehmen fließen in das RAGSource-Kontextmanagement, die KI antwortet auf Basis des tatsächlichen Unternehmenswissens">
+      <style>
+        .cd-chip{fill:var(--paper);stroke:var(--line-2);}
+        .cd-chipt{font-family:var(--mono);font-size:11px;fill:var(--ink-2);}
+        .cd-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.5px;fill:var(--ink-4);}
+        .cd-hub{fill:var(--acc);}
+        .cd-hubt{font-family:var(--serif);font-size:22px;fill:#fff;}
+        .cd-hubs{font-family:var(--mono);font-size:11px;fill:var(--acc-wash);letter-spacing:.3px;}
+        .cd-ans{fill:var(--paper);stroke:var(--acc);stroke-width:1.5;}
+        .cd-anst{font-family:var(--serif);font-size:19px;fill:var(--ink);}
+        .cd-arr{stroke:var(--ink-4);stroke-width:1.4;fill:none;}
+      </style>
+      <text class="cd-lbl" x="300" y="13" text-anchor="middle">IHR UNTERNEHMENSWISSEN</text>
+      <rect class="cd-chip" x="0"   y="24" width="90" height="34" rx="5"/><text class="cd-chipt" x="45"  y="46" text-anchor="middle">Ziele</text>
+      <rect class="cd-chip" x="94"  y="24" width="98" height="34" rx="5"/><text class="cd-chipt" x="143" y="46" text-anchor="middle">Richtlinien</text>
+      <rect class="cd-chip" x="196" y="24" width="90" height="34" rx="5"/><text class="cd-chipt" x="241" y="46" text-anchor="middle">Prozesse</text>
+      <rect class="cd-chip" x="290" y="24" width="106" height="34" rx="5"/><text class="cd-chipt" x="343" y="46" text-anchor="middle">Produktwissen</text>
+      <rect class="cd-chip" x="400" y="24" width="118" height="34" rx="5"/><text class="cd-chipt" x="459" y="46" text-anchor="middle">Erfahrungswissen</text>
+      <rect class="cd-chip" x="522" y="24" width="78" height="34" rx="5"/><text class="cd-chipt" x="561" y="46" text-anchor="middle">Gesetze</text>
+      <path class="cd-arr" d="M45 58 L45 92" marker-end="url(#cda)"/>
+      <path class="cd-arr" d="M143 58 L143 92" marker-end="url(#cda)"/>
+      <path class="cd-arr" d="M241 58 L241 92" marker-end="url(#cda)"/>
+      <path class="cd-arr" d="M343 58 L343 92" marker-end="url(#cda)"/>
+      <path class="cd-arr" d="M459 58 L459 92" marker-end="url(#cda)"/>
+      <path class="cd-arr" d="M561 58 L561 92" marker-end="url(#cda)"/>
+      <rect class="cd-hub" x="0" y="98" width="600" height="64" rx="8"/>
+      <text class="cd-hubt" x="300" y="128" text-anchor="middle">RAGSource Kontextmanagement</text>
+      <text class="cd-hubs" x="300" y="150" text-anchor="middle">präzise bis ins Detail · laufend aktuell</text>
+      <path class="cd-arr" d="M300 162 L300 196" marker-end="url(#cda)"/>
+      <rect class="cd-ans" x="0" y="202" width="600" height="56" rx="8"/>
+      <text class="cd-anst" x="300" y="236" text-anchor="middle">Antwort, die auf Ihrem tatsächlichen Wissen beruht</text>
+      <defs>
+        <marker id="cda" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="var(--ink-4)"/></marker>
+      </defs>
+    </svg>
+  </div>
   <div class="prose reveal">
-    <p>Wir sorgen dafür, dass Ihre KI immer die relevanten Wissenspakete aus Ihrem Unternehmen zur Verfügung hat, die sie braucht, um in Ihrem Sinne zu arbeiten. Das können Ziele sein, die erreicht werden müssen, Unternehmensrichtlinien, Prozessbeschreibungen, Produktwissen, praktisches Erfahrungswissen und technische Dokumentationen — kurzum, genau das, womit auch Ihre besten und erfahrensten Mitarbeiter ihren Job machen.</p>
-    <p>Entsprechend sicher muss es sein — auch darum kümmern wir uns, entweder innerhalb Ihrer Infrastruktur oder als gehosteter Service auf unseren deutschen Servern.</p>
     <p>Dabei ersetzen wir nicht Ihre IT-Abteilung oder Ihren AI Hub, sondern arbeiten mit ihnen zusammen: Wir liefern die Struktur, die für belastbare KI-Projekte oft fehlt — nicht eine weitere Plattform, die um Zuständigkeit konkurriert.</p>
     <p>Das ist eine notwendige, langfristige Investition in Ihr Unternehmen: Sie setzen den Rahmen, in dem zukünftig Bots und Assistenten Hand in Hand mit Ihren Mitarbeitern arbeiten. Diese Investition lohnt sich unabhängig davon, mit welcher Plattform Sie heute arbeiten — und schützt Sie zugleich vor der Bindung an einen einzelnen Anbieter, denn niemand weiß, welche Tools in zwei Jahren besser sind als die heutigen.</p>
   </div>
