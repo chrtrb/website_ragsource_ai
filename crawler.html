@@ -59,6 +59,13 @@ code,.mono{font-family:var(--mono);font-size:13.5px;color:var(--ink-2);backgroun
 .footer-inner{max-width:760px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
 .footer-inner a{color:var(--ink-4);}.footer-inner a:hover{color:var(--acc);}
 @media(max-width:560px){.footer-inner{flex-direction:column;}}
+.gesetz{margin:14px 0 18px;padding:16px 20px 10px;background:var(--paper-2);border-left:3px solid var(--acc);border-radius:0 4px 4px 0;font-size:14px;line-height:1.65;color:var(--ink-3);}
+.gesetz .quelle{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:13px;color:var(--ink-4);margin:0 0 10px;}
+.gesetz .quelle .ref{font-family:var(--mono);font-size:12px;color:var(--acc);font-weight:500;background:#dce8fd;padding:2px 7px;border-radius:2px;white-space:nowrap;}
+.gesetz .quelle .src{margin-left:auto;font-size:12px;}
+.gesetz p{font-size:14px;margin:0 0 8px;}
+.gesetz ol{margin:0 0 8px;padding-left:22px;}
+.page h3{font-family:var(--sans);font-weight:600;font-size:15px;color:var(--ink-2);margin:26px 0 8px;letter-spacing:-0.005em;}
 </style>
 </head>
 <body>
@@ -90,12 +97,12 @@ code,.mono{font-family:var(--mono);font-size:13.5px;color:var(--ink-2);backgroun
   <h2>Rechtliche Grundlagen</h2>
   <h3>Was wir abrufen</h3>
   <p>Wir rufen amtliche Werke ab, die Gebietskörperschaften und Zweckverbände selbst veröffentlicht haben. Unser Zugang führt immer über die Seite der veröffentlichenden Stelle.</p>
-  <p>Soweit die abgerufenen Dokumente Namen enthalten (etwa in Ausfertigungsvermerken), gilt dafür Abschnitt 7 unserer <a href="https://ragsource.ai/datenschutz#abrufdienst">Datenschutzerklärung</a>.</p>
+  <p>Soweit die abgerufenen Dokumente Namen enthalten (etwa in Ausfertigungsvermerken), gilt dafür Abschnitt 4 unserer <a href="https://ragsource.ai/datenschutz#abrufdienst">Datenschutzerklärung</a>.</p>
 
   <h3>Urheberrecht</h3>
   <p>Wir berufen uns auf § 5 des Urheberrechtsgesetzes:</p>
   <div class="gesetz">
-    <p class="quelle">§ 5 UrhG, Amtliche Werke (<a href="https://www.gesetze-im-internet.de/urhg/__5.html">gesetze-im-internet.de</a>)</p>
+    <p class="quelle"><span class="ref">§ 5 UrhG</span><span class="titel">Amtliche Werke</span><span class="src"><a href="https://www.gesetze-im-internet.de/urhg/__5.html" target="_blank" rel="noopener">gesetze-im-internet.de ↗</a></span></p>
     <p>(1) Gesetze, Verordnungen, amtliche Erlasse und Bekanntmachungen sowie Entscheidungen und amtlich verfaßte Leitsätze zu Entscheidungen genießen keinen urheberrechtlichen Schutz.</p>
     <p>(2) Das gleiche gilt für andere amtliche Werke, die im amtlichen Interesse zur allgemeinen Kenntnisnahme veröffentlicht worden sind, mit der Einschränkung, daß die Bestimmungen über Änderungsverbot und Quellenangabe in § 62 Abs. 1 bis 3 und § 63 Abs. 1 und 2 entsprechend anzuwenden sind.</p>
     <p>(3) Das Urheberrecht an privaten Normwerken wird durch die Absätze 1 und 2 nicht berührt, wenn Gesetze, Verordnungen, Erlasse oder amtliche Bekanntmachungen auf sie verweisen, ohne ihren Wortlaut wiederzugeben. In diesem Fall ist der Urheber verpflichtet, jedem Verleger zu angemessenen Bedingungen ein Recht zur Vervielfältigung und Verbreitung einzuräumen. Ist ein Dritter Inhaber des ausschließlichen Rechts zur Vervielfältigung und Verbreitung, so ist dieser zur Einräumung des Nutzungsrechts nach Satz 2 verpflichtet.</p>
@@ -104,7 +111,7 @@ code,.mono{font-family:var(--mono);font-size:13.5px;color:var(--ink-2);backgroun
   <h3>Datennutzungsgesetz</h3>
   <p>Wir berufen uns auf das Datennutzungsgesetz (DNG), insbesondere auf diese Vorschriften:</p>
   <div class="gesetz">
-    <p class="quelle">§ 2 Abs. 1 DNG, Anwendungsbereich (<a href="https://www.gesetze-im-internet.de/dng/__2.html">gesetze-im-internet.de</a>)</p>
+    <p class="quelle"><span class="ref">§ 2 Abs. 1 DNG</span><span class="titel">Anwendungsbereich</span><span class="src"><a href="https://www.gesetze-im-internet.de/dng/__2.html" target="_blank" rel="noopener">gesetze-im-internet.de ↗</a></span></p>
     <p>(1) Dieses Gesetz gilt für Daten von Datenbereitstellern nach Absatz 2, die</p>
     <ol>
       <li>aufgrund eines gesetzlichen Anspruchs auf Zugang bereitgestellt werden,</li>
@@ -113,20 +120,20 @@ code,.mono{font-family:var(--mono);font-size:13.5px;color:var(--ink-2);backgroun
     </ol>
   </div>
   <div class="gesetz">
-    <p class="quelle">§ 2 Abs. 5 DNG (<a href="https://www.gesetze-im-internet.de/dng/__2.html">gesetze-im-internet.de</a>)</p>
+    <p class="quelle"><span class="ref">§ 2 Abs. 5 DNG</span><span class="src"><a href="https://www.gesetze-im-internet.de/dng/__2.html" target="_blank" rel="noopener">gesetze-im-internet.de ↗</a></span></p>
     <p>(5) Öffentliche Stellen berufen sich im Anwendungsbereich dieses Gesetzes nicht auf Rechte des Datenbankherstellers nach § 87b des Urheberrechtsgesetzes.</p>
   </div>
   <div class="gesetz">
-    <p class="quelle">§ 3 Nr. 1 Buchstaben a und c DNG, Begriffsbestimmungen (<a href="https://www.gesetze-im-internet.de/dng/__3.html">gesetze-im-internet.de</a>)</p>
+    <p class="quelle"><span class="ref">§ 3 Nr. 1 Buchstaben a und c DNG</span><span class="titel">Begriffsbestimmungen</span><span class="src"><a href="https://www.gesetze-im-internet.de/dng/__3.html" target="_blank" rel="noopener">gesetze-im-internet.de ↗</a></span></p>
     <p>Im Sinne dieses Gesetzes sind öffentliche Stellen a) Gebietskörperschaften, einschließlich ihrer Sondervermögen, [&hellip;] c) Verbände, deren Mitglieder unter Buchstabe a oder Buchstabe b fallen.</p>
   </div>
   <div class="gesetz">
-    <p class="quelle">§ 4 Abs. 1 und 3 DNG, Grundsatz der Datennutzung (<a href="https://www.gesetze-im-internet.de/dng/__4.html">gesetze-im-internet.de</a>)</p>
+    <p class="quelle"><span class="ref">§ 4 Abs. 1 und 3 DNG</span><span class="titel">Grundsatz der Datennutzung</span><span class="src"><a href="https://www.gesetze-im-internet.de/dng/__4.html" target="_blank" rel="noopener">gesetze-im-internet.de ↗</a></span></p>
     <p>(1) Daten dürfen für jeden kommerziellen oder nichtkommerziellen Zweck genutzt werden.</p>
     <p>(3) Nutzungsbedingungen (Lizenzen) sind zulässig, soweit sie objektiv, verhältnismäßig, nichtdiskriminierend und durch ein im Allgemeininteresse liegendes Ziel gerechtfertigt sind. Die Lizenz darf nicht zu einer Wettbewerbsverzerrung führen und die Möglichkeiten der Nutzung nicht unnötig einschränken. Öffentliche Stellen sollen nach Möglichkeit offene Lizenzen verwenden.</p>
   </div>
   <div class="gesetz">
-    <p class="quelle">§ 5 Abs. 1 DNG, Nichtdiskriminierung (<a href="https://www.gesetze-im-internet.de/dng/__5.html">gesetze-im-internet.de</a>)</p>
+    <p class="quelle"><span class="ref">§ 5 Abs. 1 DNG</span><span class="titel">Nichtdiskriminierung</span><span class="src"><a href="https://www.gesetze-im-internet.de/dng/__5.html" target="_blank" rel="noopener">gesetze-im-internet.de ↗</a></span></p>
     <p>(1) Die Bedingungen für die Datennutzung müssen nichtdiskriminierend sein.</p>
   </div>
 
